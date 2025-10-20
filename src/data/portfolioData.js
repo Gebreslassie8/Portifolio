@@ -307,7 +307,7 @@ export const portfolioData = {
     name: "Gebreslassie Dessie",
     title: "Full Stack Developer",
     email: "gebreslassiedessie@email.com",
-    phone: "+251 906995513/902067211",
+    phone: "+251906995513/+251902067211",
     location: "Addis Abeba, Ethiopia",
     avatar: "/im4.jpg",
     resumeUrl: "/resume.pdf",
@@ -476,17 +476,17 @@ export const portfolioData = {
   platformStats: {
     mobile: {
       projects: 12,
-      experience: "5+ years",
+      experience: "3+ years",
       technologies: ["React Native", "Flutter", "iOS", "Android"]
     },
     desktop: {
       projects: 8,
-      experience: "4+ years",
+      experience: "3+ years",
       technologies: ["Electron", ".NET MAUI", "Java FX"]
     },
     web: {
       projects: 25,
-      experience: "6+ years",
+      experience: "4+ years",
       technologies: ["React", "Next.js", "Node.js", "TypeScript"]
     }
   }
