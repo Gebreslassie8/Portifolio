@@ -1,0 +1,258 @@
+{
+  "nav": {
+    "home": "Mana",
+    "about": "Waa'ee koo",
+    "skills": "Qophii",
+    "projects": "Pirojeektota",
+    "experience": "Hubannoo",
+    "contact": "Nu qunnamii",
+    "hireMe": "Na hirmaadhu"
+  },
+  "hero": {
+    "title": "Ful Stak Diiweloperii",
+    "subtitle": "Mobiila • Deeskiippoo • Appilee Weebii",
+    "viewWork": "Hojii koo ilaali",
+    "getInTouch": "Na qunnamii"
+  },
+  "personal": {
+    "title": "Ful Stak Diiweloperii",
+    "subtitle": "Mobiila • Deeskiippoo • Appilee Weebii",
+    "bio": "Ful stak diiweloperii waggaa 5 ol hojii qaban, appilee garaagaraa platform hunda irratti qophii qaban. React Native, Electron fi teeknooloojii weebii haaraa irratti xiyyeeffatan.",
+    "detailedBio": [
+      "Appilee garaagaraa platforma hunda irratti hojjataniif furmaata gabaabaa kennuu irratti xiyyeeffata. React Native appilee mobiilaa, Electron appilee deeskiippoo fi framework weebii haaraa irratti qophii qaba.",
+      "Oduun koo weebii diiwelopmantiin eegale, appilee mobiilaa fi deeskiippoo dabalate. Koodii qulqulluu, tursiifama qabu barreessuu fi platforma hunda irratti aadaa indaastirii haaraa waliin tajaajiluu amana.",
+      "Yoo appii mobiilaa iOS/Android, appii deeskiippoo Windows/Mac/Linux, yookiin appii weebii deebi'u ta'ee, miira kee fudhachuuf qophii qaba."
+    ]
+  },
+  "about": {
+    "title": "Waa'ee koo",
+    "heading": "Dijiitaalii Qophii Uumuu",
+    "stats": {
+      "years": "Waggaa Hubannoo",
+      "projects": "Pirojeektota Xumuran"
+    },
+    "personalInfo": "Odeeffannoo Dhuunfaa",
+    "downloadResume": "Siivii Baasi"
+  },
+  "platforms": {
+    "title": "Qophii Platforma Dachee",
+    "description": "Appilee platforma hunda keessatti hojjetu ijaaru - appii mobiilaa irraa kaasee sooftiweerii deeskiippoo fi appilee weebii",
+    "cta": "Yaada kee platforma kamillee akka jiraatutti fiduuf qophaa'eeraa?",
+    "startProject": "Pirojeektaa Keessan Eegdu",
+    "projects": "Pirojeektota",
+    "experience": "Hubannoo",
+    "mobile": {
+      "title": "Diiwelopmantii Mobiilaa",
+      "description": "Appilee mobiilaa iOS fi Android platforma lachaniif ijaaru"
+    },
+    "desktop": {
+      "title": "Appilee Deeskiippoo",
+      "description": "Appilee deeskiippoo fooyya'aa Windows, macOS fi Linuxif ijaaru"
+    },
+    "web": {
+      "title": "Diiwelopmantii Weebii",
+      "description": "Appilee weebii baay'ina fayyadamaatiif ijaaru framework haaraa fi aadaa gaarii fayyadamuun"
+    }
+  },
+  "skills": {
+    "title": "Teeknooloojii Staakii",
+    "description": "Qophii guutuu diiwelopmantii platforma hunda keessatti",
+    "mobile": "Diiwelopmantii Mobiilaa",
+    "desktop": "Diiwelopmantii Deeskiippoo",
+    "frontend": "Weebii Froontendii",
+    "backend": "Weebii Beekendii",
+    "tools": "Meeshaalee & DevOps",
+    "philosophy": "Firoosofii Diiwelopmantii Platforma Dachee",
+    "philosophyText": "Appilee platforma hunda keessatti experience fayyadamaa waliigalaa kennaniif ijaaruun amana, dursa qophii platforma lachanii fayyadamuun haala fooyya'aa fi miira uumamaa qaban kennuuf.",
+    "items": {
+      "react-native": { "description": "Freemwarkii mobiilaa platforma dachee" },
+      "flutter": { "description": "Appilee haala uumamaa" },
+      "ios": { "description": "Swift & Objective-C" },
+      "android": { "description": "Kotlin & Java" },
+      "mobile-ui": { "description": "Ijaarsa mobiilaa deebi'aa" },
+      "electron": { "description": "Appilee deeskiippoo platforma dachee" },
+      "maui": { "description": "Eekosistemi Maayikiroosoofitii" },
+      "javafx": { "description": "Appilee deeskiippoo iinteerpraayizii" },
+      "tauri": { "description": "Freemwarkii Raast irratti hundaa'u" },
+      "react": { "description": "Diiwelopmantii UI haaraa" },
+      "nextjs": { "description": "Freemwarkii Reektii ful staakii" },
+      "typescript": { "description": "Javaaskiriptii tayipii nageenyaa" },
+      "tailwind": { "description": "CSS jalqaba fayyadamaa" },
+      "vue": { "description": "Freemwarkii dagaagaa" },
+      "nodejs": { "description": "Iddoo rantaayimii Javaaskiriptii" },
+      "express": { "description": "Freemwarkii appilee weebii" },
+      "django": { "description": "Diiwelopmantii ariifataa" },
+      "postgresql": { "description": "Daataabeesii walitti hidhamtee" },
+      "mongodb": { "description": "Daataabeesii NoSQL" },
+      "git": { "description": "Kontoroolii viershinii" },
+      "docker": { "description": "Kontayinerizeshinii" },
+      "aws": { "description": "Tajaajila Sammuu" },
+      "firebase": { "description": "Beekendii akka tajaajilaa" }
+    }
+  },
+  "projects": {
+    "title": "Pirojeektota Koo",
+    "description": "Hojii koo platforma garaagaraa keessatti ilaali - appii mobiilaa irraa kaasee sooftiweerii deeskiippoo fi appilee weebii",
+    "all": "Platforma Hunda",
+    "mobile": "Mobiilaa",
+    "desktop": "Deeskiippoo",
+    "web": "Weebii",
+    "code": "Koodii",
+    "liveDemo": "Agarsiisa Sirrii",
+    "download": "Baasi",
+    "appStore": "App Stoorii",
+    "playStore": "Pilee Stoorii",
+    "statistics": "Lakkoofsa Pirojeektaa",
+    "mobileApps": "Appilee Mobiilaa",
+    "desktopApps": "Appilee Deeskiippoo",
+    "webApps": "Appilee Weebii",
+    "items": {
+      "project1": {
+        "title": "FitTrack Pro Mobiilaa",
+        "description": "Appii fooyya'aa fiitnesii qabu, yaalii AI qabu, hiikkaa hojii waliigalaa fi qorannoo dorgommii yeroo sirrii. Moodii oflaayinii deeggara fi giila garaagaraa waliin wal simata.",
+        "category": "Fayyaa & Fiitnesii"
+      },
+      "project2": {
+        "title": "TaskFlow Mobiilaa",
+        "description": "Appii qophii qabu, bulchiinsa hojii ogummaa qabu, walta'ii garee fi dandeettii oflaayinii qabu. Boordee Kanbaan fi yaadannoo otomeetii dabalata.",
+        "category": "Qophii"
+      },
+      "project3": {
+        "title": "CodeSync IDE",
+        "description": "Bareedaa koodii deeskiippoo haaraa, walta'ii yeroo sirrii, eekosistemiin piilagjinii baay'ee qabu fi terminaalii makamate. Afaan garaagaraa proograamii deeggara.",
+        "category": "Meeshaalee Diiwelopmantii"
+      },
+      "project4": {
+        "title": "Daashboorodii Faayinaansii Proo",
+        "description": "Appii deeskiippoo platforma dachee bulchiinsa faayinaansii dhuunfaa guutuu kan gulaalu. Qo'annoo investimentiifi hiikkaa faayinaansii dabalata.",
+        "category": "Faayinaansii"
+      },
+      "project5": {
+        "title": "Platformii Ii-komeersii",
+        "description": "Furmaata ii-komeersii ful staakii, daashboorodii aadmiinii fooyya'aa, makamoo kaffaltii, bulchiinsa inventoorii fi qorannoo keessummaa.",
+        "category": "Ii-komeersii"
+      },
+      "project6": {
+        "title": "Suyiitii Bulchiinsa Pirojeektaa",
+        "description": "Platformii bulchiinsa pirojeektaa walta'ii yeroo sirrii, boordeewwan Kanbaan, qo'annoo yeroo, qoodaa resoorsii fi hiikkaa guutuu.",
+        "category": "Qophii"
+      }
+    }
+  },
+  "experience": {
+    "title": "Hubannoo Piroominaalaa",
+    "description": "Imala koo teeknooloojii mobiilaa, deeskiippoo fi weebii keessatti",
+    "achievements": "Mirkaneessawwan Gurguddoo",
+    "highlights": "Garee Hubannoo Hojii",
+    "companies": "Kompaniilee",
+    "achievementsCount": "Mirkaneessawwan",
+    "yearsExp": "Waggaa Hubannoo",
+    "platformsCount": "Platformwwan",
+    "platforms": {
+      "mobile": "Mobiilaa",
+      "desktop": "Deeskiippoo",
+      "web": "Weebii"
+    },
+    "items": {
+      "exp1": {
+        "position": "Diiweloperii Ful Staakii Iggitaa",
+        "company": "TechCorp Inc.",
+        "location": "San Francisco, CA",
+        "period": "2022 - Amma",
+        "description": "Diiwelopmantiin appilee platforma dachee qajeelchee fi diiwelopera dargaggoota aadaa injinerii sooftiweerii haaraa mobiilaa, deeskiippoo fi weebii barsiise.",
+        "achievements": [
+          "Appii mobiilaa 3 app stoorii hunda keessatti daawwnload 100k+ qabu ijaaree eegale",
+          "Appilee deeskiippoo addunyaa hunda keessatti fayyadamaa iinteerpraayizii 10k+ fayyadamu ijaare",
+          "Platformii weebii gara arkiiteektuurii maayikirooservisii deeme, skalabiliitii 200% fooyya'ise",
+          "Diiwelopera dargaggoota 4 diiwelopmantii platforma dachee aadaa gaarii barsiise",
+          "Paayipiiloonii CI/CD hojjachuun yeroo deebisu platforma hunda irratti 70% hir'ise"
+        ]
+      },
+      "exp2": {
+        "position": "Diiweloperii Liidii Mobiilaa",
+        "company": "MobileFirst Solutions",
+        "location": "Riimootii",
+        "period": "2020 - 2022",
+        "description": "Diiwelopmantiin appilee mobiilaa platforma dachee indaastirii garaagaraaf qophaa'e, fooyya'insaa fi experience fayyadamaa irratti xiyyeeffate.",
+        "achievements": [
+          "Diiwelopmantiin appilee mobiilaa 8+ sektora fayyaa fi faayinaansiiif qajeelche",
+          "Qixxeessaa urjii 4.8+ appilee hunda keessatti argate",
+          "Yeroo appii laajii 60% fooyya'insaa fooyya'uun hir'ise",
+          "Arkiiteektuurii oflaayinii jalqabaa netwaarkii hin amanamuuf hojjachise",
+          "Hiikkaa fooyya'aa akka yaadannoo puushii fi gita bittaa appii keessaa makamate"
+        ]
+      },
+      "exp3": {
+        "position": "Diiweloperii Weebii Ful Staakii",
+        "company": "WebScale Technologies",
+        "location": "New York, NY",
+        "period": "2018 - 2020",
+        "description": "Appilee weebii deebi'aa fi sistamii beekendii keessummaa garaagaraaf ijaare, skalabiliitii fi experience fayyadamaa irratti xiyyeeffate.",
+        "achievements": [
+          "Appilee weebii deebi'aa fayyadamaa aktiivii ji'a 50k+ tajaajilu ijaare",
+          "Qabxii fooyya'insaa weebsaayitii 40% fooyya'uun fooyya'ise",
+          "API RESTful appilee keessummaa hedduu tajaajilu ijaare",
+          "Ilaalcha sirnaa qorannoo guutuu koodii kavaaraa 85% geessise",
+          "API fi tajaajila paartii sadaffaa hiikkaa fooyya'uuf makamate"
+        ]
+      },
+      "exp4": {
+        "position": "Diiweloperii Appii Deeskiippoo",
+        "company": "DesktopSoft Inc.",
+        "location": "Seattle, WA",
+        "period": "2016 - 2018",
+        "description": "Appilee deeskiippoo platforma dachee iinteerpraayizii keessummaaaf ijaaru irratti xiyyeeffate, fooyya'insaa fi nageenyaa irratti.",
+        "achievements": [
+          "Appilee deeskiippoo 5+ iinteerpraayizii keessummaaaf ijaare",
+          "Appilee haala uumamaa Electron fi .NET fayyadamuun uume",
+          "Mekiizimii otomeetii haaromsaa experience fayyadamaa tasaa kan gulaalu hojjachise",
+          "Appilee deeskiippoo nageenyaa daataa faayinaansii mijeessuu qaban ijaare",
+          "Appilee platforma Windows, macOS fi Linux fooyya'ise"
+        ]
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Mirkaneessa Fayyadamaa",
+    "description": "Jechaa koo qofa hin fudhatin - maal fayyadamoonni fi hiriyoonni waliin hojii irratti jedhan dhaggeeffadhu",
+    "items": {
+      "testimonial1": {
+        "name": "Alemayehu Tekle",
+        "position": "CEO, Teek Inooveeshin Afriikaa",
+        "content": "Gebreslassie furmaata platforma dachee ajaa'ibaa maarkii Itoophiyaa irratti qopheeffame kenne. Hubannoo isaa fedhii fayyadamaa naannoo fi qophii teekniikaa waliin ajaa'ibaa dha."
+      },
+      "testimonial2": {
+        "name": "Meron Abebe",
+        "position": "Manaajerii Pirooduuktii, Addis Teek Solushinii",
+        "content": "Gebreslassie waliin appilee mobiilaa keenya irratti hojjachuun jijjiirama ture. Appiin isaa haala netwaarkii adda Itoophiyaa fooyya'aan bulchu, experience fayyadamaa gaarii tasaa tursiisu."
+      },
+      "testimonial3": {
+        "name": "Samuel Johnson",
+        "position": "Diraaktarii, Afriikaan Dijiitaal Eejensii",
+        "content": "Appilee deeskiippoo Gebreslassie akkamitti daldaltoonni Itoophiyaa hojjatan jijjiire. Eegumsa isaa dandeettii oflaayinii fi fedhii naannoo irratti ol aanaa dha."
+      }
+    }
+  },
+  "contact": {
+    "title": "Nu Qunnamii",
+    "heading": "Waan Gaarii Hojjennu",
+    "description": "Dorgommii haaraa fi pirojeektota ajaa'ibaa irratti dhaggeeffachuuf yeroo hunda fedha qaba. Dhimmi Afrikaa keessatti rakkoo dhugaa furu appilee dijiitaalii uumuu irratti xiqqeessaa dha. Appii mobiilaa, sooftiweerii deeskiippoo yookiin appii weebii Afrikaa fi Itoophiyaa irratti qophaa'e yoo barbaaddan, yaada kee fudhachuuf gargaaruu irra jira.",
+    "name": "Maqaa Kee",
+    "email": "Lakkoofsa Imeelii",
+    "subject": "Mata Duree",
+    "message": "Ergaa",
+    "send": "Ergaa Ergi",
+    "successMessage": "Ergaa keef galatooma! Achumaan siin deebi'a.",
+    "namePlaceholder": "Gebreslassie Dessie",
+    "emailPlaceholder": "gebreslassiedessie@gmail.com",
+    "subjectPlaceholder": "Waliigala Pirojeektaa",
+    "messagePlaceholder": "Pirojeektaa kee irratti na himi..."
+  },
+  "footer": {
+    "description": "Diiweloperii Ful Staakii Itoophiyaa mobiilaa, deeskiippoo fi appilee weebii irratti xiyyeeffata. Experience dijiitaalii adda adda platforma hunda irratti uumuu.",
+    "quickLinks": "Faana Liiŋkii",
+    "getInTouch": "Nu Qunnamii",
+    "rights": "Mirgi hundi kan of eeggate.",
+    "madeWith": "React & Tailwind CSS fayyadamuun ❤️ waliin ijaarame"
+  }
+}
