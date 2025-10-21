@@ -76,15 +76,32 @@ const About = () => {
           </h2>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left Column - Content */}
             <div>
-              <h3 className="text-3xl font-semibold text-secondary dark:text-light mb-6">
-                {t('about.heading')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
-                {t('personal.bio')}
-              </p>
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-6"
+              >
+                <h3 className="text-3xl font-semibold text-secondary dark:text-light mb-4">
+                  Hi, I'm {personal.name} 👋
+                </h3>
+                <div className="inline-block bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                  🚀 Full Stack Developer
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
+                  {t('personal.bio')}
+                </p>
+              </motion.div>
               
-              <div className="grid grid-cols-2 gap-6 mt-8">
+              {/* Stats Grid */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="grid grid-cols-2 gap-6 mt-8"
+              >
                 <div className="text-center p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
                   <div className="text-3xl font-bold text-primary mb-2">
                     {Object.values(portfolioData.platformStats).reduce((total, platform) => total + platform.projects, 0)}+
@@ -101,10 +118,15 @@ const About = () => {
                   </div>
                   <div className="text-gray-600 dark:text-gray-300">{t('about.stats.years')}</div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Quick Stats */}
-              <div className="mt-8 grid grid-cols-3 gap-4 text-center">
+              {/* Platform Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-8 grid grid-cols-3 gap-4 text-center"
+              >
                 <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-xl">
                   <div className="text-2xl font-bold text-green-600 mb-1">
                     {portfolioData.platformStats.mobile.projects}
@@ -123,98 +145,125 @@ const About = () => {
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-300">Web Apps</div>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
-              <h4 className="text-xl font-semibold text-secondary dark:text-light mb-6">
-                {t('about.personalInfo')}
-              </h4>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center">
-                  <span className="text-primary mr-4">📧</span>
-                  <span className="text-gray-600 dark:text-gray-300">{personal.email}</span>
+            {/* Right Column - Photo & Info */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col items-center"
+            >
+              {/* Profile Photo */}
+              <div className="mb-8 relative">
+                <div className="w-64 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
+                  <img
+                    src="/im2.jpg" // Replace with your actual photo path
+                    alt={personal.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="flex items-center">
-                  <span className="text-primary mr-4">📱</span>
-                  <span className="text-gray-600 dark:text-gray-300">{personal.phone}</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-primary mr-4">📍</span>
-                  <span className="text-gray-600 dark:text-gray-300">{personal.location}</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-primary mr-4">🎓</span>
-                  <span className="text-gray-600 dark:text-gray-300">MTU Software Engineering</span>
-                </div>
+                {/* Decorative elements */}
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full animate-pulse"></div>
+                <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-accent rounded-full animate-pulse delay-1000"></div>
               </div>
 
-              {/* Enhanced Social Links with Tooltiphs */}
-              <div className="mb-6">
-                <div className="flex justify-center space-x-3">
-                  {socialLinks.map((social) => (
-                    social.url && (
-                      <div key={social.platform} className="relative group">
-                        <a
-                          href={social.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`
-                            flex items-center justify-center
-                            w-12 h-12 rounded-xl
-                            transition-all duration-300 ease-in-out
-                            transform group-hover:scale-110
-                            border-2
-                            ${social.bgColor}
-                            ${social.hoverBgColor}
-                            ${social.textColor}
-                            ${social.borderColor}
-                            shadow-md hover:shadow-lg
-                            group-hover:-translate-y-1
-                          `}
-                        >
-                          {social.icon}
-                        </a>
-                        
-                        {/* Tooltip */}
-                        <div className="
-                          absolute -top-10 left-1/2 transform -translate-x-1/2
-                          bg-gray-800 dark:bg-gray-700 text-white text-xs
-                          px-2 py-1 rounded-md
-                          opacity-0 group-hover:opacity-100
-                          transition-opacity duration-300
-                          pointer-events-none
-                          whitespace-nowrap
-                          shadow-lg
-                          z-10
-                        ">
-                          {social.name}
-                          {/* Tooltip arrow */}
+              {/* Personal Info Card */}
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 w-full max-w-md">
+                <h4 className="text-xl font-semibold text-secondary dark:text-light mb-6 text-center">
+                  {t('about.personalInfo')}
+                </h4>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <span className="text-primary mr-4">📧</span>
+                    <span className="text-gray-600 dark:text-gray-300">{personal.email}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-primary mr-4">📱</span>
+                    <span className="text-gray-600 dark:text-gray-300">{personal.phone}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-primary mr-4">📍</span>
+                    <span className="text-gray-600 dark:text-gray-300">{personal.location}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-primary mr-4">🎓</span>
+                    <span className="text-gray-600 dark:text-gray-300">MTU Software Engineering</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-primary mr-4">💻</span>
+                    <span className="text-gray-600 dark:text-gray-300 font-medium">Full Stack Developer</span>
+                  </div>
+                </div>
+
+                {/* Enhanced Social Links */}
+                <div className="mb-6">
+                  <div className="flex justify-center space-x-3">
+                    {socialLinks.map((social) => (
+                      social.url && (
+                        <div key={social.platform} className="relative group">
+                          <a
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`
+                              flex items-center justify-center
+                              w-12 h-12 rounded-xl
+                              transition-all duration-300 ease-in-out
+                              transform group-hover:scale-110
+                              border-2
+                              ${social.bgColor}
+                              ${social.hoverBgColor}
+                              ${social.textColor}
+                              ${social.borderColor}
+                              shadow-md hover:shadow-lg
+                              group-hover:-translate-y-1
+                            `}
+                          >
+                            {social.icon}
+                          </a>
+                          
+                          {/* Tooltip */}
                           <div className="
-                            absolute top-full left-1/2 transform -translate-x-1/2
-                            border-4 border-transparent border-t-gray-800 dark:border-t-gray-700
-                          "></div>
+                            absolute -top-10 left-1/2 transform -translate-x-1/2
+                            bg-gray-800 dark:bg-gray-700 text-white text-xs
+                            px-2 py-1 rounded-md
+                            opacity-0 group-hover:opacity-100
+                            transition-opacity duration-300
+                            pointer-events-none
+                            whitespace-nowrap
+                            shadow-lg
+                            z-10
+                          ">
+                            {social.name}
+                            {/* Tooltip arrow */}
+                            <div className="
+                              absolute top-full left-1/2 transform -translate-x-1/2
+                              border-4 border-transparent border-t-gray-800 dark:border-t-gray-700
+                            "></div>
+                          </div>
                         </div>
-                      </div>
-                    )
-                  ))}
+                      )
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* PDF Download Button */}
-              <button
-                onClick={handleDownloadPDF}
-                className="btn-primary w-full text-center block group relative overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  {t('about.downloadResume')}
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </button>
-            </div>
+                {/* PDF Download Button */}
+                <button
+                  onClick={handleDownloadPDF}
+                  className="btn-primary w-full text-center block group relative overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    {t('about.downloadResume')}
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </button>
+              </div>
+            </motion.div>
           </div>
 
           {/* Detailed Bio Section */}
@@ -227,7 +276,7 @@ const About = () => {
           >
             <div className="bg-gradient-to-r from-primary/10 to-accent/10 dark:from-primary/20 dark:to-accent/20 rounded-2xl p-8 border border-primary/20 dark:border-primary/30">
               <h4 className="text-xl font-semibold text-secondary dark:text-light mb-4">
-                {t('personal.title')}
+                About My Journey
               </h4>
               <div className="space-y-4 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                 {t('personal.detailedBio', { returnObjects: true }).map((paragraph, index) => (
@@ -235,9 +284,26 @@ const About = () => {
                 ))}
               </div>
               
+              {/* Full Stack Specialization */}
+              <div className="mt-6 p-4 bg-white dark:bg-gray-800 rounded-lg border border-primary/20">
+                <h5 className="font-semibold text-secondary dark:text-light mb-2 flex items-center justify-center gap-2">
+                  <span>🚀</span>
+                  Full Stack Development Focus
+                </h5>
+                <p className="text-gray-600 dark:text-gray-300 text-center">
+                  <strong>Frontend:</strong> React, Next.js, TypeScript, Tailwind CSS<br/>
+                  <strong>Backend:</strong> Node.js, Python, Express, Django<br/>
+                  <strong>Database:</strong> MongoDB, PostgreSQL, Firebase<br/>
+                  <strong>DevOps:</strong> Docker, AWS, CI/CD, Cloud Deployment
+                </p>
+              </div>
+
               {/* Education Highlight */}
               <div className="mt-6 p-4 bg-white dark:bg-gray-800 rounded-lg border border-primary/20">
-                <h5 className="font-semibold text-secondary dark:text-light mb-2">🎓 Education</h5>
+                <h5 className="font-semibold text-secondary dark:text-light mb-2 flex items-center justify-center gap-2">
+                  <span>🎓</span>
+                  Education
+                </h5>
                 <p className="text-gray-600 dark:text-gray-300">
                   <strong>MTU - Master of Technology in Software Engineering</strong> (2022-2024)
                 </p>

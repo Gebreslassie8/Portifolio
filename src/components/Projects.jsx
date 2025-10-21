@@ -26,12 +26,6 @@ const ProjectCard = ({ project, index }) => {
         bgColor: 'bg-gradient-to-r from-green-500 to-emerald-500',
         icon: '🌐',
         gradient: 'hover:from-green-600 hover:to-emerald-600'
-      },
-      fullstack: {
-        color: 'from-orange-500 to-red-500',
-        bgColor: 'bg-gradient-to-r from-orange-500 to-red-500',
-        icon: '⚡',
-        gradient: 'hover:from-orange-600 hover:to-red-600'
       }
     }
     return badges[platform] || badges.web
@@ -196,8 +190,7 @@ const Projects = () => {
     { key: 'all', label: t('projects.all'), count: projects.length },
     { key: 'mobile', label: t('projects.mobile'), count: projects.filter(p => p.platform === 'mobile').length },
     { key: 'desktop', label: t('projects.desktop'), count: projects.filter(p => p.platform === 'desktop').length },
-    { key: 'web', label: t('projects.web'), count: projects.filter(p => p.platform === 'web').length },
-    { key: 'fullstack', label: t('projects.fullstack'), count: projects.filter(p => p.platform === 'fullstack').length }
+    { key: 'web', label: t('projects.web'), count: projects.filter(p => p.platform === 'web').length }
   ]
 
   const filteredProjects = filter === 'all' 

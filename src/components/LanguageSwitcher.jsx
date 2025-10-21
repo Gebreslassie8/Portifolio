@@ -24,15 +24,18 @@ const LanguageSwitcher = () => {
     <div className="relative">
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg text-white hover:bg-white/20 transition-all duration-300"
+        className="flex items-center space-x-2 px-4 py-2 bg-white/80 dark:bg-white/10 backdrop-blur-sm rounded-lg text-gray-800 dark:text-white hover:bg-white dark:hover:bg-white/20 transition-all duration-300 border border-gray-200 dark:border-white/20"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         <span className="text-lg">{currentLanguage.flag}</span>
-        <span className="text-sm font-medium hidden sm:block">{currentLanguage.name}</span>
+        <span className="text-sm font-medium hidden sm:block text-gray-800 dark:text-white">
+          {currentLanguage.name}
+        </span>
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
+          className="text-gray-600 dark:text-white"
         >
           ▼
         </motion.span>
@@ -54,7 +57,7 @@ const LanguageSwitcher = () => {
                 className={`flex items-center space-x-3 w-full px-4 py-2 text-left transition-colors duration-200 ${
                   i18n.language === language.code
                     ? 'bg-primary/10 text-primary dark:text-primary-light'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    : 'text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
                 <span className="text-lg">{language.flag}</span>

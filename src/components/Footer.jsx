@@ -166,9 +166,10 @@ const Footer = () => {
             <p className="text-gray-400">
               © {currentYear} {personal.name}. {t('footer.rights')}
             </p>
-            <div className="flex items-center space-x-6 text-gray-400 text-sm">
-              <span>{t('footer.madeWith')}</span>
-            </div>
+           <div className="flex items-center space-x-2">
+           <span className="text-lg">👨‍💻</span>
+          <span className="text-accent font-semibold">Made by Gebreslassie Dessie</span>
+         </div>
           </div>
         </motion.div>
 
