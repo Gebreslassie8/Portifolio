@@ -1,37 +1,62 @@
 import { motion } from 'framer-motion'
 import { portfolioData } from '../data/portfolioData'
 import { useTranslation } from 'react-i18next'
-import { FaGithub, FaLinkedin, FaTwitter, FaGlobe } from 'react-icons/fa'
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaGlobe,
+  FaTelegram,
+  FaTiktok,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt
+} from 'react-icons/fa'
 
 const Footer = () => {
   const { t } = useTranslation()
   const { personal } = portfolioData
   const currentYear = new Date().getFullYear()
 
-  // Platform name mapping for display
+  // Platform names for tooltips
   const platformNames = {
     github: 'GitHub',
     linkedin: 'LinkedIn',
     twitter: 'Twitter',
     website: 'Website',
-    portfolio: 'Portfolio'
+    portfolio: 'Portfolio',
+    telegram: 'Telegram',
+    tiktok: 'TikTok'
   }
 
-  // Platform icon mapping
- const getPlatformIcon = (platform) => {
+  // Social icons with pure brand colors – no gray backgrounds
+  const getSocialIcon = (platform) => {
     switch (platform) {
       case 'github':
-        return <FaGithub className="text-gray-800 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors" />
+        return <FaGithub className="text-gray-900 dark:text-white hover:opacity-80 transition-opacity text-2xl" />
       case 'linkedin':
-        return <FaLinkedin className="text-[#0077b5] hover:text-[#005885] dark:text-[#0077b5] dark:hover:text-[#00a0dc] transition-colors" />
+        return <FaLinkedin className="text-[#0077b5] hover:text-[#005885] transition-colors text-2xl" />
       case 'twitter':
-        return <FaTwitter className="text-[#1da1f2] hover:text-[#0d8bd9] dark:text-[#1da1f2] dark:hover:text-[#8ecdf7] transition-colors" />
+        return <FaTwitter className="text-[#1DA1F2] hover:text-[#0d8bd9] transition-colors text-2xl" />
       case 'website':
-        return <FaGlobe className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 transition-colors" />
+        return <FaGlobe className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 transition-colors text-2xl" />
+      case 'telegram':
+        return <FaTelegram className="text-[#0088cc] hover:text-[#006699] transition-colors text-2xl" />
+      case 'tiktok':
+        return <FaTiktok className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-2xl" />
       default:
         return null
     }
   }
+
+  // Contact info icons
+  const contactIcons = {
+    email: <FaEnvelope className="text-red-500 text-xl" />,
+    phone: <FaPhoneAlt className="text-green-500 text-xl" />,
+    location: <FaMapMarkerAlt className="text-blue-500 text-xl" />
+  }
+
+  const githubProfileUrl = 'https://github.com/Gebreslassie8'
 
   const quickLinks = [
     { name: t('nav.home'), href: '#home' },
@@ -48,6 +73,17 @@ const Footer = () => {
       element.scrollIntoView({ behavior: 'smooth' })
     }
   }
+
+  // Social links (merge with defaults)
+  const socialLinks = {
+    ...personal.socialLinks,
+    github: githubProfileUrl,
+    telegram: personal.socialLinks?.telegram || 'https://t.me/gebreslassie',
+    tiktok: personal.socialLinks?.tiktok || 'https://tiktok.com/@gebreslassie'
+  }
+
+  // Split phone numbers (if multiple)
+  const phoneNumbers = personal.phone ? personal.phone.split('/') : ['+251906995513']
 
   return (
     <footer className="bg-gradient-to-br from-secondary to-dark text-white pt-16 pb-8">
@@ -67,28 +103,28 @@ const Footer = () => {
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
               {t('footer.description')}
             </p>
-            <div className="flex space-x-4">
-              {Object.entries(personal.socialLinks).map(([platform, url]) => (
-                <div key={platform} className="relative group">
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-primary hover:scale-110 transition-all duration-300"
-                  >
-                    <span className="text-lg">
-                      {getPlatformIcon(platform)}
-                    </span>
-                  </a>
-                  {/* Tooltip - Positioned below the icon */}
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    <div className="bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded whitespace-nowrap">
-                      {platformNames[platform] || platform}
+            {/* Social Icons - pure colors, no background */}
+            <div className="flex flex-wrap gap-4">
+              {Object.entries(socialLinks).map(([platform, url]) => (
+                url && (
+                  <div key={platform} className="relative group">
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block transition-transform hover:scale-110 duration-300"
+                    >
+                      {getSocialIcon(platform)}
+                    </a>
+                    {/* Tooltip */}
+                    <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
+                      <div className="bg-gray-800 text-white text-xs py-1 px-2 rounded whitespace-nowrap">
+                        {platformNames[platform] || platform}
+                      </div>
+                      <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></div>
                     </div>
-                    {/* Tooltip arrow - positioned above the tooltip */}
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 dark:bg-gray-700 rotate-45"></div>
                   </div>
-                </div>
+                )
               ))}
             </div>
           </motion.div>
@@ -119,7 +155,7 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Contact Info */}
+          {/* Contact Info - using React Icons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -128,26 +164,34 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold mb-6">{t('footer.getInTouch')}</h4>
             <div className="space-y-3">
-              <div className="flex items-center text-gray-300">
-                <span className="mr-3">📧</span>
-                <a 
-                  href={`mailto:${personal.email}`} 
+              {/* Email */}
+              <div className="flex items-center gap-3 text-gray-300">
+                {contactIcons.email}
+                <a
+                  href={`mailto:${personal.email}`}
                   className="hover:text-white transition-colors duration-300"
                 >
                   {personal.email}
                 </a>
               </div>
-              <div className="flex items-center text-gray-300">
-                <span className="mr-3">📱</span>
-                <a 
-                  href={`tel:${personal.phone}`} 
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  {personal.phone}
-                </a>
+              {/* Phone (supports multiple numbers) */}
+              <div className="flex items-start gap-3 text-gray-300">
+                {contactIcons.phone}
+                <div className="flex flex-col">
+                  {phoneNumbers.map((num, idx) => (
+                    <a
+                      key={idx}
+                      href={`tel:${num.trim()}`}
+                      className="hover:text-white transition-colors duration-300"
+                    >
+                      {num.trim()}
+                    </a>
+                  ))}
+                </div>
               </div>
-              <div className="flex items-center text-gray-300">
-                <span className="mr-3">📍</span>
+              {/* Location */}
+              <div className="flex items-center gap-3 text-gray-300">
+                {contactIcons.location}
                 <span>{personal.location}</span>
               </div>
             </div>
@@ -166,10 +210,17 @@ const Footer = () => {
             <p className="text-gray-400">
               © {currentYear} {personal.name}. {t('footer.rights')}
             </p>
-           <div className="flex items-center space-x-2">
-           <span className="text-lg">👨‍💻</span>
-          <span className="text-accent font-semibold">Made by Gebreslassie Dessie</span>
-         </div>
+            <div className="flex items-center gap-2">
+              <span className="text-lg">👨‍💻</span>  {/* Keep emoji or replace with icon? Optional */}
+              <a
+                href={githubProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent font-semibold hover:underline transition"
+              >
+                Made by Gebreslassie Dessie
+              </a>
+            </div>
           </div>
         </motion.div>
 

@@ -196,7 +196,7 @@ export const portfolioData = {
       description: "Specialized in building high-performance mobile applications for iOS and Android platforms. Collaborated with design teams to create intuitive user experiences.",
       technologies: ["React Native", "Flutter", "Firebase", "Redux", "iOS", "Android", "REST APIs"],
       platforms: ["mobile"],
- 
+
     },
     {
       id: "exp3",
@@ -221,32 +221,7 @@ export const portfolioData = {
     }
   ],
 
-  testimonials: [
-    {
-      id: "testimonial1",
-      name: "Sarah Johnson",
-      position: "Product Manager at TechCorp",
-      text: "Gebreslassie delivered exceptional cross-platform solutions that significantly improved our product's performance and user experience.",
-      avatar: "/im5.jpg",
-      rating: 5
-    },
-    {
-      id: "testimonial2",
-      name: "Michael Chen",
-      position: "CTO at MobileFirst",
-      text: "Working with Gebreslassie was a game-changer for our mobile development team. His expertise in React Native and Flutter helped us deliver projects faster.",
-      avatar: "/im5.jpg",
-      rating: 5
-    },
-    {
-      id: "testimonial3",
-      name: "Emily Rodriguez",
-      position: "Lead Designer at WebScale",
-      text: "Gebreslassie's ability to translate complex designs into functional, responsive web applications is truly impressive. A great team player!",
-      avatar: "/im5.jpg",
-      rating: 5
-    }
-  ],
+
 
   platformStats: {
     mobile: {
