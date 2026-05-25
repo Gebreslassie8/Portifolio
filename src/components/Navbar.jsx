@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link, useLocation } from 'react-router-dom'  // ← added
 import { portfolioData } from '../data/portfolioData'
 import ThemeToggle from './ThemeToggle'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -21,45 +22,47 @@ const Navbar = () => {
   const { t } = useTranslation()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
+  const location = useLocation()
+  const pathname = location.pathname
 
+  // Determine active link based on current path
+  const getActiveFromPath = () => {
+    if (pathname === '/') return 'home'
+    if (pathname === '/about') return 'about'
+    if (pathname === '/skills') return 'skills'
+    if (pathname === '/projects') return 'projects'
+    if (pathname === '/experience') return 'experience'
+    if (pathname === '/contact') return 'contact'
+    return 'home'
+  }
+  const activeSection = getActiveFromPath()
+
+  // Handle scroll effect for navbar background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
-
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact']
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
-        }
-        return false
-      })
-
-      if (currentSection) setActiveSection(currentSection)
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Navigation items with React Router paths
   const navItems = [
-    { name: t('nav.home'), href: '#home', icon: <FaStar className="text-lg" />, activeIcon: <FaHome className="text-lg" /> },
-    { name: t('nav.about'), href: '#about', icon: <FaUser className="text-lg" />, activeIcon: <FaUser className="text-lg" /> },
-    { name: t('nav.skills'), href: '#skills', icon: <FaTools className="text-lg" />, activeIcon: <FaBolt className="text-lg" /> },
-    { name: t('nav.projects'), href: '#projects', icon: <FaProjectDiagram className="text-lg" />, activeIcon: <FaRocket className="text-lg" /> },
-    { name: t('nav.experience'), href: '#experience', icon: <FaBriefcase className="text-lg" />, activeIcon: <FaChartLine className="text-lg" /> },
-    { name: t('nav.contact'), href: '#contact', icon: <FaEnvelope className="text-lg" />, activeIcon: <FaEnvelope className="text-lg" /> }
+    { name: t('nav.home'), path: '/', icon: <FaStar className="text-lg" />, activeIcon: <FaHome className="text-lg" /> },
+    { name: t('nav.about'), path: '/about', icon: <FaUser className="text-lg" />, activeIcon: <FaUser className="text-lg" /> },
+    { name: t('nav.skills'), path: '/skills', icon: <FaTools className="text-lg" />, activeIcon: <FaBolt className="text-lg" /> },
+    { name: t('nav.projects'), path: '/projects', icon: <FaProjectDiagram className="text-lg" />, activeIcon: <FaRocket className="text-lg" /> },
+    { name: t('nav.experience'), path: '/experience', icon: <FaBriefcase className="text-lg" />, activeIcon: <FaChartLine className="text-lg" /> },
+    { name: t('nav.contact'), path: '/contact', icon: <FaEnvelope className="text-lg" />, activeIcon: <FaEnvelope className="text-lg" /> }
   ]
 
   const mobileNavItems = [
-    { name: t('nav.home'), href: '#home', icon: <FaStar className="text-xl" /> },
-    { name: t('nav.about'), href: '#about', icon: <FaUser className="text-xl" /> },
-    { name: t('nav.skills'), href: '#skills', icon: <FaTools className="text-xl" /> },
-    { name: t('nav.projects'), href: '#projects', icon: <FaProjectDiagram className="text-xl" /> },
-    { name: t('nav.experience'), href: '#experience', icon: <FaBriefcase className="text-xl" /> },
-    { name: t('nav.contact'), href: '#contact', icon: <FaEnvelope className="text-xl" /> }
+    { name: t('nav.home'), path: '/', icon: <FaStar className="text-xl" /> },
+    { name: t('nav.about'), path: '/about', icon: <FaUser className="text-xl" /> },
+    { name: t('nav.skills'), path: '/skills', icon: <FaTools className="text-xl" /> },
+    { name: t('nav.projects'), path: '/projects', icon: <FaProjectDiagram className="text-xl" /> },
+    { name: t('nav.experience'), path: '/experience', icon: <FaBriefcase className="text-xl" /> },
+    { name: t('nav.contact'), path: '/contact', icon: <FaEnvelope className="text-xl" /> }
   ]
 
   const sidebarVariants = {
@@ -86,40 +89,41 @@ const Navbar = () => {
         }`}>
         <div className="container-custom">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <motion.a
-              href="#home"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent flex items-center space-x-2"
-            >
-              <FaRocket className="text-primary" />
-              <span>{portfolioData.personal.name.split(' ')[0]}</span>
-            </motion.a>
+            {/* Logo - Links to home */}
+            <Link to="/">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent flex items-center space-x-2 cursor-pointer"
+              >
+                <FaRocket className="text-primary" />
+                <span>{portfolioData.personal.name.split(' ')[0]}</span>
+              </motion.div>
+            </Link>
 
             {/* Desktop Navigation - visible on large screens */}
             <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 flex items-center space-x-2 ${activeSection === item.href.substring(1)
-                      ? 'text-primary bg-primary/10 shadow-lg'
-                      : 'text-secondary dark:text-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800'
-                    }`}
-                >
-                  <span>{activeSection === item.href.substring(1) ? item.activeIcon : item.icon}</span>
-                  <span>{item.name}</span>
-                  {activeSection === item.href.substring(1) && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-xl border border-primary/30"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                </motion.a>
+                <Link key={item.name} to={item.path}>
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 flex items-center space-x-2 ${activeSection === item.name.toLowerCase()
+                        ? 'text-primary bg-primary/10 shadow-lg'
+                        : 'text-secondary dark:text-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800'
+                      }`}
+                  >
+                    <span>{activeSection === item.name.toLowerCase() ? item.activeIcon : item.icon}</span>
+                    <span>{item.name}</span>
+                    {activeSection === item.name.toLowerCase() && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-xl border border-primary/30"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                  </motion.div>
+                </Link>
               ))}
             </div>
 
@@ -159,11 +163,10 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Sidebar - slides from left, appears when hamburger is clicked */}
+      {/* Mobile Sidebar - slides from left */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -171,8 +174,6 @@ const Navbar = () => {
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
-
-            {/* Sidebar */}
             <motion.div
               variants={sidebarVariants}
               initial="closed"
@@ -207,7 +208,6 @@ const Navbar = () => {
                 </motion.button>
               </div>
 
-              {/* Navigation Items */}
               <div className="p-6">
                 <motion.div
                   className="flex flex-col space-y-2"
@@ -216,32 +216,30 @@ const Navbar = () => {
                   animate="open"
                 >
                   {mobileNavItems.map((item) => (
-                    <motion.a
-                      key={item.name}
-                      href={item.href}
-                      variants={itemVariants}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      whileHover={{ x: 5, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`flex items-center space-x-4 p-4 rounded-2xl text-lg font-medium transition-all duration-300 ${activeSection === item.href.substring(1)
-                          ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg'
-                          : 'text-secondary dark:text-light hover:bg-gray-100 dark:hover:bg-gray-800'
-                        }`}
-                    >
-                      <span className="flex items-center justify-center w-6">{item.icon}</span>
-                      <span className="flex-1">{item.name}</span>
-                      {activeSection === item.href.substring(1) && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="w-2 h-2 bg-white rounded-full"
-                        />
-                      )}
-                    </motion.a>
+                    <Link key={item.name} to={item.path} onClick={() => setIsMobileMenuOpen(false)}>
+                      <motion.div
+                        variants={itemVariants}
+                        whileHover={{ x: 5, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`flex items-center space-x-4 p-4 rounded-2xl text-lg font-medium transition-all duration-300 ${activeSection === item.name.toLowerCase()
+                            ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg'
+                            : 'text-secondary dark:text-light hover:bg-gray-100 dark:hover:bg-gray-800'
+                          }`}
+                      >
+                        <span className="flex items-center justify-center w-6">{item.icon}</span>
+                        <span className="flex-1">{item.name}</span>
+                        {activeSection === item.name.toLowerCase() && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="w-2 h-2 bg-white rounded-full"
+                          />
+                        )}
+                      </motion.div>
+                    </Link>
                   ))}
                 </motion.div>
 
-                {/* Extra motivational card */}
                 <motion.div
                   variants={itemVariants}
                   className="mt-8 p-4 bg-gradient-to-r from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10 rounded-2xl border border-primary/10 dark:border-primary/20"
