@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { portfolioData } from '../data/portfolioData'
 import { useTranslation } from 'react-i18next'
 import { generateResumePDF } from '../utils/pdfGenerator'
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaGraduationCap, FaCode } from 'react-icons/fa'
 
 const About = () => {
   const { t } = useTranslation()
@@ -26,7 +27,7 @@ const About = () => {
   // GitHub profile URL
   const githubProfileUrl = 'https://github.com/Gebreslassie8'
 
-  // Social links (including GitHub)
+  // Social links (same as before)
   const socialLinks = [
     {
       platform: 'github',
@@ -102,7 +103,7 @@ const About = () => {
                 </p>
               </motion.div>
 
-              {/* Only Platform Stats - Professional Cards */}
+              {/* Platform Stats Cards */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -145,7 +146,7 @@ const About = () => {
               </motion.div>
             </div>
 
-            {/* Right Column - Profile Photo (Professionally animated) */}
+            {/* Right Column - Profile Photo with animations */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -169,35 +170,35 @@ const About = () => {
                 <div className="absolute -bottom-3 -left-3 w-4 h-4 bg-accent rounded-full animate-pulse delay-1000"></div>
               </motion.div>
 
-              {/* Personal Info Card */}
+              {/* Personal Info Card with React Icons */}
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 w-full max-w-md shadow-xl hover:shadow-2xl transition-shadow">
                 <h4 className="text-xl font-semibold text-secondary dark:text-light mb-6 text-center">
                   {t('about.personalInfo')}
                 </h4>
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center">
-                    <span className="text-primary mr-4">📧</span>
+                    <FaEnvelope className="text-primary text-xl mr-4" />
                     <span className="text-gray-600 dark:text-gray-300">{personal.email}</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-primary mr-4">📱</span>
+                    <FaPhoneAlt className="text-primary text-xl mr-4" />
                     <span className="text-gray-600 dark:text-gray-300">{personal.phone}</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-primary mr-4">📍</span>
+                    <FaMapMarkerAlt className="text-primary text-xl mr-4" />
                     <span className="text-gray-600 dark:text-gray-300">{personal.location}</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-primary mr-4">🎓</span>
+                    <FaGraduationCap className="text-primary text-xl mr-4" />
                     <span className="text-gray-600 dark:text-gray-300">MTU Software Engineering</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="text-primary mr-4">💻</span>
+                    <FaCode className="text-primary text-xl mr-4" />
                     <span className="text-gray-600 dark:text-gray-300 font-medium">Full Stack Developer</span>
                   </div>
                 </div>
 
-                {/* Social Links (including GitHub) */}
+                {/* Social Links (same as before) */}
                 <div className="mb-6">
                   <div className="flex justify-center space-x-3">
                     {socialLinks.map((social) => (
@@ -256,7 +257,7 @@ const About = () => {
             </motion.div>
           </div>
 
-          {/* Detailed Bio Section (kept unchanged) */}
+          {/* Detailed Bio Section – Education removed */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -286,17 +287,7 @@ const About = () => {
                 </p>
               </div>
 
-              <div className="mt-6 p-4 bg-white dark:bg-gray-800 rounded-lg border border-primary/20">
-                <h5 className="font-semibold text-secondary dark:text-light mb-2 flex items-center justify-center gap-2">
-                  <span>🎓</span> Education
-                </h5>
-                <p className="text-gray-600 dark:text-gray-300">
-                  <strong>MTU - Master of Technology in Software Engineering</strong> (2022-2024)
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Specialized in Cloud Computing, AI Integration, and Distributed Systems
-                </p>
-              </div>
+              {/* Education section removed as requested */}
             </div>
           </motion.div>
         </motion.div>
