@@ -21,8 +21,9 @@ const Hero = () => {
   const roles = [
     t('hero.title'),           // e.g., "Full Stack Developer"
     'Mobile App Developer',
-    'UI/UX Enthusiast',
-    'Cloud Specialist'
+    'Desktop App Developer',
+    'Web App Developer',
+    'UI/UX Enthusiast'
   ]
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayText, setDisplayText] = useState('')
@@ -57,7 +58,7 @@ const Hero = () => {
     { platform: 'linkedin', url: personal.socialLinks.linkedin, name: 'LinkedIn', icon: FaLinkedin, color: 'text-[#0077b5] hover:text-[#005885]' },
     { platform: 'twitter', url: personal.socialLinks.twitter, name: 'Twitter', icon: FaTwitter, color: 'text-[#1da1f2] hover:text-[#0d8bd9]' },
     { platform: 'website', url: personal.socialLinks.website, name: 'Website', icon: FaGlobe, color: 'text-emerald-600 hover:text-emerald-700' },
-    { platform: 'telegram', url: 'https://t.me/gebreslassie', name: 'Telegram', icon: FaTelegram, color: 'text-[#0088cc] hover:text-[#006699]' },
+    { platform: 'telegram', url: 'https://t.me/GD272727', name: 'Telegram', icon: FaTelegram, color: 'text-[#0088cc] hover:text-[#006699]' },
     { platform: 'tiktok', url: 'https://tiktok.com/@gebreslassie', name: 'TikTok', icon: FaTiktok, color: 'text-black dark:text-white hover:text-gray-600' }
   ]
 

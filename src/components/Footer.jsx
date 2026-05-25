@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom' // ← added for routing
 import { portfolioData } from '../data/portfolioData'
 import { useTranslation } from 'react-i18next'
 import {
@@ -10,7 +11,8 @@ import {
   FaTiktok,
   FaEnvelope,
   FaPhoneAlt,
-  FaMapMarkerAlt
+  FaMapMarkerAlt,
+  FaCode // ← professional icon instead of emoji
 } from 'react-icons/fa'
 
 const Footer = () => {
@@ -58,28 +60,22 @@ const Footer = () => {
 
   const githubProfileUrl = 'https://github.com/Gebreslassie8'
 
+  // Quick links using React Router paths (no hash, full routes)
   const quickLinks = [
-    { name: t('nav.home'), href: '#home' },
-    { name: t('nav.about'), href: '#about' },
-    { name: t('nav.skills'), href: '#skills' },
-    { name: t('nav.projects'), href: '#projects' },
-    { name: t('nav.experience'), href: '#experience' },
-    { name: t('nav.contact'), href: '#contact' }
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.skills'), href: '/skills' },
+    { name: t('nav.projects'), href: '/projects' },
+    { name: t('nav.experience'), href: '/experience' },
+    { name: t('nav.contact'), href: '/contact' }
   ]
-
-  const handleQuickLinkClick = (href) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   // Social links (merge with defaults)
   const socialLinks = {
     ...personal.socialLinks,
     github: githubProfileUrl,
-    telegram: personal.socialLinks?.telegram || 'https://t.me/gebreslassie',
-    tiktok: personal.socialLinks?.tiktok || 'https://tiktok.com/@gebreslassie'
+    telegram: personal.socialLinks?.telegram || 'https://t.me/GD272727',
+    tiktok: personal.socialLinks?.tiktok || 'https://tiktok.com/@mindyouhead'
   }
 
   // Split phone numbers (if multiple)
@@ -129,7 +125,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Quick Links - using React Router <Link> */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -140,16 +136,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleQuickLinkClick(link.href)
-                    }}
+                  <Link
+                    to={link.href}
                     className="text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -198,7 +190,7 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar with animated signature */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -210,8 +202,12 @@ const Footer = () => {
             <p className="text-gray-400">
               © {currentYear} {personal.name}. {t('footer.rights')}
             </p>
-            <div className="flex items-center gap-2">
-              <span className="text-lg">👨‍💻</span>  {/* Keep emoji or replace with icon? Optional */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              className="flex items-center gap-2"
+            >
+              <FaCode className="text-accent text-xl" />
               <a
                 href={githubProfileUrl}
                 target="_blank"
@@ -220,7 +216,7 @@ const Footer = () => {
               >
                 Made by Gebreslassie Dessie
               </a>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
 
