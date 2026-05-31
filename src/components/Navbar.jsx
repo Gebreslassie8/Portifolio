@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link, useLocation } from 'react-router-dom'  // ← added
+import { Link, useLocation } from 'react-router-dom'
 import { portfolioData } from '../data/portfolioData'
 import ThemeToggle from './ThemeToggle'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -25,7 +25,6 @@ const Navbar = () => {
   const location = useLocation()
   const pathname = location.pathname
 
-  // Determine active link based on current path
   const getActiveFromPath = () => {
     if (pathname === '/') return 'home'
     if (pathname === '/about') return 'about'
@@ -37,7 +36,6 @@ const Navbar = () => {
   }
   const activeSection = getActiveFromPath()
 
-  // Handle scroll effect for navbar background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
@@ -46,7 +44,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Navigation items with React Router paths
   const navItems = [
     { name: t('nav.home'), path: '/', icon: <FaStar className="text-lg" />, activeIcon: <FaHome className="text-lg" /> },
     { name: t('nav.about'), path: '/about', icon: <FaUser className="text-lg" />, activeIcon: <FaUser className="text-lg" /> },
@@ -82,61 +79,14 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Main Navbar */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-2xl py-2 border-b border-gray-200/50 dark:border-gray-700/50'
-          : 'bg-transparent py-4'
+        ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-2xl py-2 border-b border-gray-200/50 dark:border-gray-700/50'
+        : 'bg-transparent py-4'
         }`}>
         <div className="container-custom">
           <div className="flex items-center justify-between">
-            {/* Logo - Links to home */}
-            <Link to="/">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent flex items-center space-x-2 cursor-pointer"
-              >
-                <FaRocket className="text-primary" />
-                <span>{portfolioData.personal.name.split(' ')[0]}</span>
-              </motion.div>
-            </Link>
-
-            {/* Desktop Navigation - visible on large screens */}
-            <div className="hidden lg:flex items-center space-x-1">
-              {navItems.map((item) => (
-                <Link key={item.name} to={item.path}>
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 flex items-center space-x-2 ${activeSection === item.name.toLowerCase()
-                        ? 'text-primary bg-primary/10 shadow-lg'
-                        : 'text-secondary dark:text-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800'
-                      }`}
-                  >
-                    <span>{activeSection === item.name.toLowerCase() ? item.activeIcon : item.icon}</span>
-                    <span>{item.name}</span>
-                    {activeSection === item.name.toLowerCase() && (
-                      <motion.div
-                        layoutId="activeIndicator"
-                        className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-xl border border-primary/30"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      />
-                    )}
-                  </motion.div>
-                </Link>
-              ))}
-            </div>
-
-            {/* Desktop Right Side Items */}
-            <div className="hidden lg:flex items-center space-x-4">
-              <LanguageSwitcher />
-              <ThemeToggle />
-            </div>
-
-            {/* Mobile Menu Button - visible only on mobile/tablet */}
-            <div className="flex items-center space-x-3 lg:hidden">
-              <LanguageSwitcher />
-              <ThemeToggle />
+            {/* LEFT SIDE: Hamburger (only visible on mobile/tablet) */}
+            <div className="flex items-center lg:hidden">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -159,11 +109,55 @@ const Navbar = () => {
                 </div>
               </motion.button>
             </div>
+
+            {/* LOGO: centered on mobile, left on desktop */}
+            <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 lg:relative lg:left-0 lg:transform-none">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent flex items-center space-x-2 cursor-pointer"
+              >
+                <FaRocket className="text-primary" />
+                <span>{portfolioData.personal.name.split(' ')[0]}</span>
+              </motion.div>
+            </Link>
+
+            {/* DESKTOP NAVIGATION (visible only on large screens) */}
+            <div className="hidden lg:flex items-center space-x-1">
+              {navItems.map((item) => (
+                <Link key={item.name} to={item.path}>
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 flex items-center space-x-2 ${activeSection === item.name.toLowerCase()
+                      ? 'text-primary bg-primary/10 shadow-lg'
+                      : 'text-secondary dark:text-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800'
+                      }`}
+                  >
+                    <span>{activeSection === item.name.toLowerCase() ? item.activeIcon : item.icon}</span>
+                    <span>{item.name}</span>
+                    {activeSection === item.name.toLowerCase() && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-xl border border-primary/30"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
+
+            {/* RIGHT SIDE: Language & Theme toggles (always visible) */}
+            <div className="flex items-center space-x-3">
+              <LanguageSwitcher />
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Sidebar - slides from left */}
+      {/* Mobile Sidebar (unchanged, slides from left) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -222,8 +216,8 @@ const Navbar = () => {
                         whileHover={{ x: 5, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
                         whileTap={{ scale: 0.95 }}
                         className={`flex items-center space-x-4 p-4 rounded-2xl text-lg font-medium transition-all duration-300 ${activeSection === item.name.toLowerCase()
-                            ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg'
-                            : 'text-secondary dark:text-light hover:bg-gray-100 dark:hover:bg-gray-800'
+                          ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg'
+                          : 'text-secondary dark:text-light hover:bg-gray-100 dark:hover:bg-gray-800'
                           }`}
                       >
                         <span className="flex items-center justify-center w-6">{item.icon}</span>
