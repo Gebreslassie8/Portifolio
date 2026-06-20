@@ -2,7 +2,7 @@ export const portfolioData = {
   personal: {
     name: "Gebreslassie Dessie",
     title: "Full Stack Developer",
-    email: "gebreslassiedessie@email.com",
+    email: "gebreslassiedessie@gmail.com",
     phone: "+251906995513/+251902067211",
     location: "Addis Abeba, Ethiopia",
     avatar: "/im4.jpg",
@@ -190,28 +190,7 @@ export const portfolioData = {
       technologies: ["Electron", ".NET", "C#", "SQL Server", "WPF", "Java FX"],
       platforms: ["desktop"],
     }
-  ],
+  ]
 
 
-
-  platformStats: {
-    mobile: {
-      projects: 5,
-      experience: "2+ years",
-      technologies: ["React Native", "Flutter", "iOS", "Android"],
-      skills: ["Cross-platform Development", "Native Performance", "UI/UX Design", "App Store Deployment"]
-    },
-    desktop: {
-      projects: 8,
-      experience: "3+ years",
-      technologies: ["Electron", ".NET MAUI", "Java FX"],
-      skills: ["System Integration", "Performance Optimization", "Desktop UI", "Cross-platform Compatibility"]
-    },
-    web: {
-      projects: 24,
-      experience: "4+ years",
-      technologies: ["React", "Next.js", "Node.js", "TypeScript"],
-      skills: ["Full Stack Development", "API Design", "Cloud Deployment", "Performance Optimization"]
-    }
-  }
 }
