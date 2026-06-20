@@ -126,7 +126,7 @@ export const portfolioData = {
       description: "A Python-based task management application for tracking and organizing daily tasks efficiently.",
       image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=250&fit=crop",
       technologies: ["Python", "SQLite", "Tkinter"],
-      platform: "desktop",
+      platform: "web",
       githubUrl: "https://github.com/Gebreslassie8/To-Do-Listpython-project",
       featured: false,
       status: "Live",
