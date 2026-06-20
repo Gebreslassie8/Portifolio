@@ -8,9 +8,8 @@ const LanguageSwitcher = () => {
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'am', name: 'አማርኛ', flag: '🇪🇹' },
-    { code: 'om', name: 'Afaan Oromoo', flag: '🇪🇹' },
-    { code: 'ar', name: 'العربية', flag: '🇸🇦' }
+    { code: 'am', name: 'አማርኛ', flag: '🇪🇹' }
+
   ]
 
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0]
@@ -54,11 +53,10 @@ const LanguageSwitcher = () => {
               <button
                 key={language.code}
                 onClick={() => changeLanguage(language.code)}
-                className={`flex items-center space-x-3 w-full px-4 py-2 text-left transition-colors duration-200 ${
-                  i18n.language === language.code
-                    ? 'bg-primary/10 text-primary dark:text-primary-light'
-                    : 'text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
+                className={`flex items-center space-x-3 w-full px-4 py-2 text-left transition-colors duration-200 ${i18n.language === language.code
+                  ? 'bg-primary/10 text-primary dark:text-primary-light'
+                  : 'text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  }`}
               >
                 <span className="text-lg">{language.flag}</span>
                 <span className="text-sm font-medium">{language.name}</span>
