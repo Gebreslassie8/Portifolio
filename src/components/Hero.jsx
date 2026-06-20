@@ -4,12 +4,6 @@ import { Link } from 'react-router-dom'
 import { portfolioData } from '../data/portfolioData'
 import { useTranslation } from 'react-i18next'
 import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaGlobe,
-  FaTelegram,
-  FaTiktok,
   FaDownload
 } from 'react-icons/fa'
 
@@ -51,16 +45,6 @@ const Hero = () => {
     }
     return () => clearTimeout(timeout)
   }, [displayText, isDeleting, roleIndex, roles])
-
-  // Social links mapping (consistent with footer)
-  const socialLinks = [
-    { platform: 'github', url: personal.socialLinks.github, name: 'GitHub', icon: FaGithub, color: 'text-gray-800 dark:text-gray-200 hover:text-gray-600' },
-    { platform: 'linkedin', url: personal.socialLinks.linkedin, name: 'LinkedIn', icon: FaLinkedin, color: 'text-[#0077b5] hover:text-[#005885]' },
-    { platform: 'twitter', url: personal.socialLinks.twitter, name: 'Twitter', icon: FaTwitter, color: 'text-[#1da1f2] hover:text-[#0d8bd9]' },
-    { platform: 'website', url: personal.socialLinks.website, name: 'Website', icon: FaGlobe, color: 'text-emerald-600 hover:text-emerald-700' },
-    { platform: 'telegram', url: 'https://t.me/GD272727', name: 'Telegram', icon: FaTelegram, color: 'text-[#0088cc] hover:text-[#006699]' },
-    { platform: 'tiktok', url: 'https://tiktok.com/@gebreslassie', name: 'TikTok', icon: FaTiktok, color: 'text-black dark:text-white hover:text-gray-600' }
-  ]
 
   // Resume PDF path (place your resume in public/resume.pdf)
   const resumeUrl = '/resume.pdf'
@@ -152,29 +136,6 @@ const Hero = () => {
             </a>
           </div>
 
-          {/* Social Icons (pure brand colors) */}
-          <div className="flex justify-center gap-5">
-            {socialLinks.map((social) => (
-              social.url && (
-                <div key={social.platform} className="relative group">
-                  <a
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block transition-all duration-300 transform hover:scale-110"
-                  >
-                    <social.icon className={`text-2xl ${social.color}`} />
-                  </a>
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
-                    <div className="bg-gray-800 text-white text-xs py-1 px-2 rounded whitespace-nowrap">
-                      {social.name}
-                    </div>
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></div>
-                  </div>
-                </div>
-              )
-            ))}
-          </div>
         </motion.div>
       </div>
     </section>

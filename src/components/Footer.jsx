@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import {
   FaGithub,
   FaLinkedin,
-  FaTwitter,
   FaGlobe,
   FaTelegram,
   FaTiktok,
@@ -24,7 +23,6 @@ const Footer = () => {
   const platformNames = {
     github: 'GitHub',
     linkedin: 'LinkedIn',
-    twitter: 'Twitter',
     website: 'Website',
     portfolio: 'Portfolio',
     telegram: 'Telegram',
@@ -38,8 +36,6 @@ const Footer = () => {
         return <FaGithub className="text-gray-900 dark:text-white hover:opacity-80 transition-opacity text-2xl" />
       case 'linkedin':
         return <FaLinkedin className="text-[#0077b5] hover:text-[#005885] transition-colors text-2xl" />
-      case 'twitter':
-        return <FaTwitter className="text-[#1DA1F2] hover:text-[#0d8bd9] transition-colors text-2xl" />
       case 'website':
         return <FaGlobe className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 transition-colors text-2xl" />
       case 'telegram':
@@ -75,7 +71,7 @@ const Footer = () => {
     ...personal.socialLinks,
     github: githubProfileUrl,
     telegram: personal.socialLinks?.telegram || 'https://t.me/GD272727',
-    tiktok: personal.socialLinks?.tiktok || 'https://tiktok.com/@mindyouhead'
+    tiktok: personal.socialLinks?.tiktok || 'https://tiktok.com/@gebreslassie27'
   }
 
   // Split phone numbers (if multiple)

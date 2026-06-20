@@ -5,12 +5,11 @@ export const portfolioData = {
     email: "gebreslassiedessie@gmail.com",
     phone: "+251906995513/+251902067211",
     location: "Addis Abeba, Ethiopia",
-    avatar: "/im4.jpg",
+    avatar: "/image3.jpg",
     resumeUrl: "/resume.pdf",
     socialLinks: {
       github: "https://github.com",
-      linkedin: "https://linkedin.com",
-      twitter: "https://twitter.com"
+      linkedin: "https://linkedin.com"
     }
   },
 
