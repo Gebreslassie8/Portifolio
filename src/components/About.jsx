@@ -17,22 +17,22 @@ const About = () => {
     }
   }
 
-  // Professional platform stats with emoji icons
+  // Professional platform stats with emoji icons - NO NUMBERS
   const platformStats = [
     {
-      value: '',
+      value: '✓',
       label: 'Mobile Applications',
       icon: '📱',
       bgColor: 'from-green-500 to-emerald-500'
     },
     {
-      value: '',
+      value: '✓',
       label: 'Desktop Applications',
       icon: '💻',
       bgColor: 'from-purple-500 to-pink-500'
     },
     {
-      value: '',
+      value: '✓',
       label: 'Web Applications',
       icon: '🌐',
       bgColor: 'from-teal-500 to-cyan-500'
@@ -70,7 +70,6 @@ const About = () => {
       hoverBgColor: 'hover:bg-blue-700',
       textColor: 'text-white'
     },
-
     {
       platform: 'whatsapp',
       url: 'https://wa.me/251902067211',
@@ -108,9 +107,82 @@ const About = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-center text-secondary dark:text-light mb-16">
-            {t('about.title')}
-          </h2>
+          {/* ===== DECORATED "ABOUT ME" HEADER ===== */}
+          <div className="text-center mb-16">
+            {/* Decorative line above */}
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: '60px' }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-4"
+            ></motion.div>
+
+            {/* Title with decoration */}
+            <div className="relative inline-block">
+              <h2 className="text-4xl md:text-5xl font-bold text-secondary dark:text-light">
+                <span className="relative">
+                  {t('about.title')}
+                  {/* Decorative underline */}
+                  <motion.span
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '100%' }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    viewport={{ once: true }}
+                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
+                  ></motion.span>
+                </span>
+              </h2>
+            </div>
+
+            {/* Decorative dots */}
+            <div className="flex justify-center gap-2 mt-4">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="w-2 h-2 rounded-full bg-primary"
+              ></motion.div>
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.7 }}
+                viewport={{ once: true }}
+                className="w-2 h-2 rounded-full bg-accent"
+              ></motion.div>
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.8 }}
+                viewport={{ once: true }}
+                className="w-2 h-2 rounded-full bg-primary"
+              ></motion.div>
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.9 }}
+                viewport={{ once: true }}
+                className="w-2 h-2 rounded-full bg-accent"
+              ></motion.div>
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 0.4, delay: 1.0 }}
+                viewport={{ once: true }}
+                className="w-2 h-2 rounded-full bg-primary"
+              ></motion.div>
+            </div>
+
+            {/* Subtle decorative line below */}
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: '40px' }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="h-0.5 bg-gradient-to-r from-accent to-primary mx-auto rounded-full mt-4"
+            ></motion.div>
+          </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             {/* Left Column - Content */}
@@ -128,11 +200,11 @@ const About = () => {
                   🚀 Full Stack Developer
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
-                  {t('personal.bio')}
+                  Full-stack developer building scalable applications across all platforms. Specialized in React Native, Electron, and modern web technologies.
                 </p>
               </motion.div>
 
-              {/* Platform Stats Cards */}
+              {/* Platform Stats Cards - Now showing checkmarks instead of numbers */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -147,7 +219,7 @@ const About = () => {
                   >
                     <div className="bg-white dark:bg-gray-800 rounded-xl p-5 text-center transition-all group-hover:scale-[0.97]">
                       <div className="text-4xl mb-2">{stat.icon}</div>
-                      <div className="text-2xl font-bold text-gray-800 dark:text-white">{stat.value}</div>
+                      <div className="text-2xl font-bold text-green-500 dark:text-green-400">{stat.value}</div>
                       <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{stat.label}</div>
                     </div>
                   </div>
@@ -197,7 +269,6 @@ const About = () => {
                     <FaMapMarkerAlt className="text-primary text-xl mr-4" />
                     <span className="text-gray-600 dark:text-gray-300">{personal.location}</span>
                   </div>
-
                   <div className="flex items-center">
                     <FaCode className="text-primary text-xl mr-4" />
                     <span className="text-gray-600 dark:text-gray-300 font-medium">Full Stack Developer</span>
@@ -276,14 +347,14 @@ const About = () => {
                 About My Journey
               </h4>
               <div className="space-y-4 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                {t('personal.detailedBio', { returnObjects: true }).map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
+                <p>
+                  Full-stack developer building scalable applications across all platforms. Specialized in React Native, Electron, and modern web technologies.
+                </p>
               </div>
 
               <div className="mt-6 p-4 bg-white dark:bg-gray-800 rounded-lg border border-primary/20">
                 <h5 className="font-semibold text-secondary dark:text-light mb-2 flex items-center justify-center gap-2">
-                  <span></span> Full Stack Development Focus
+                  <span>🚀</span> Full Stack Development Focus
                 </h5>
                 <p className="text-gray-600 dark:text-gray-300 text-center">
                   <strong>Frontend:</strong> React, Next.js, TypeScript, Tailwind CSS<br />
