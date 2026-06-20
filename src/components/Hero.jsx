@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import {
   FaDownload
 } from 'react-icons/fa'
+import { generateResumePDF } from '../utils/pdfGenerator'
 
 const Hero = () => {
   const { t } = useTranslation()
@@ -22,6 +23,7 @@ const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayText, setDisplayText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
+  const [isDownloading, setIsDownloading] = useState(false)
 
   useEffect(() => {
     const currentRole = roles[roleIndex]
@@ -46,8 +48,18 @@ const Hero = () => {
     return () => clearTimeout(timeout)
   }, [displayText, isDeleting, roleIndex, roles])
 
-  // Resume PDF path (place your resume in public/resume.pdf)
-  const resumeUrl = '/resume.pdf'
+  // Handle PDF download with loading state
+  const handleDownloadResume = async () => {
+    setIsDownloading(true)
+    try {
+      await generateResumePDF(portfolioData)
+    } catch (error) {
+      console.error('Error downloading resume:', error)
+      alert('Failed to generate resume. Please try again.')
+    } finally {
+      setIsDownloading(false)
+    }
+  }
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden section-padding">
@@ -125,17 +137,26 @@ const Hero = () => {
                 {t('hero.getInTouch')} 💬
               </motion.button>
             </Link>
-            <a href={resumeUrl} download target="_blank" rel="noopener noreferrer">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 bg-gray-800 dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-gray-900 transition-all flex items-center gap-2"
-              >
-                <FaDownload className="text-sm" /> Download Resume
-              </motion.button>
-            </a>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleDownloadResume}
+              disabled={isDownloading}
+              className={`px-6 py-3 bg-gray-800 dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-gray-900 transition-all flex items-center gap-2 ${isDownloading ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
+            >
+              {isDownloading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Generating...
+                </>
+              ) : (
+                <>
+                  <FaDownload className="text-sm" /> Download Resume
+                </>
+              )}
+            </motion.button>
           </div>
-
         </motion.div>
       </div>
     </section>
