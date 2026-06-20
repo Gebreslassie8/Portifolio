@@ -14,7 +14,8 @@ import {
   FaGlobe,
   FaCheckCircle,
   FaExclamationCircle,
-  FaInfoCircle
+  FaInfoCircle,
+  FaUsers
 } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
 
@@ -104,7 +105,6 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: ''
   })
   const [isLoading, setIsLoading] = useState(false)
@@ -196,11 +196,10 @@ const Contact = () => {
 
     try {
       const telegramMessage = `
-🚀 <b>New Project Inquiry!</b>
+🚀 <b>New Project Collaboration Request!</b>
 
 👤 <b>Name:</b> ${formData.name}
 📧 <b>Email:</b> ${formData.email}
-📋 <b>Subject:</b> ${formData.subject}
 
 💬 <b>Message:</b>
 ${formData.message}
@@ -216,7 +215,7 @@ ${formData.message}
         'Message Sent Successfully! 🎉',
         'Thank you for reaching out. I will get back to you soon.'
       )
-      setFormData({ name: '', email: '', subject: '', message: '' })
+      setFormData({ name: '', email: '', message: '' })
     } catch (error) {
       console.error(error)
       showPopup(
@@ -261,11 +260,27 @@ ${formData.message}
                   transition={{ duration: 0.6 }}
                 >
                   <h3 className="text-2xl font-semibold text-secondary dark:text-light mb-6">
-                    {t('contact.heading')}
+                    Let's Build Something Amazing Together
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
-                    {t('contact.description')}
+                    Passionate about creating innovative solutions for the African market and beyond.
+                    Whether you're in Addis Ababa, across Ethiopia, or anywhere in the world,
+                    I'm ready to collaborate on your next big project.
                   </p>
+
+                  {/* African & Global Market Context Cards */}
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-xl border border-green-200 dark:border-green-800">
+                      <FaUsers className="text-2xl text-green-600 dark:text-green-400 mb-2" />
+                      <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">African Market</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Digital solutions for Africa</p>
+                    </div>
+                    <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-4 rounded-xl border border-blue-200 dark:border-blue-800">
+                      <FaGlobe className="text-2xl text-blue-600 dark:text-blue-400 mb-2" />
+                      <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">Global Reach</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">World-class solutions</p>
+                    </div>
+                  </div>
 
                   <div className="space-y-5 mb-10">
                     <div className="flex items-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition">
@@ -273,10 +288,10 @@ ${formData.message}
                         <FaEnvelope className="text-red-500 text-xl" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{t('contact.email')}</p>
-                        <a href={`mailto:${personal.email}`} className="font-medium text-gray-800 dark:text-white hover:text-primary transition">
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
+                        <span className="font-medium text-gray-800 dark:text-white">
                           {personal.email}
-                        </a>
+                        </span>
                       </div>
                     </div>
 
@@ -285,7 +300,7 @@ ${formData.message}
                         <FaPhoneAlt className="text-green-500 text-xl" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{t('contact.phone')}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Phone</p>
                         <a href={`tel:${personal.phone}`} className="font-medium text-gray-800 dark:text-white hover:text-primary transition">
                           {personal.phone}
                         </a>
@@ -297,7 +312,7 @@ ${formData.message}
                         <GiPositionMarker className="text-blue-500 text-xl" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{t('contact.location')}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Location</p>
                         <a
                           href={googleMapsUrl}
                           target="_blank"
@@ -312,6 +327,14 @@ ${formData.message}
                         </p>
                       </div>
                     </div>
+
+                    {/* Available for Work Badge */}
+                    <div className="flex items-center gap-3 bg-green-50 dark:bg-green-900/20 p-4 rounded-xl border border-green-200 dark:border-green-800">
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Available for freelance & full-time collaboration
+                      </span>
+                    </div>
                   </div>
                 </motion.div>
               </div>
@@ -323,59 +346,49 @@ ${formData.message}
                 transition={{ duration: 0.6 }}
               >
                 <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 backdrop-blur-sm border border-gray-100 dark:border-gray-700">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          {t('contact.name')}
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                          placeholder={t('contact.namePlaceholder')}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          {t('contact.email')}
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                          placeholder={t('contact.emailPlaceholder')}
-                        />
-                      </div>
-                    </div>
+                  <div className="mb-6 text-center">
+                    <h4 className="text-xl font-bold text-secondary dark:text-light">Start a Conversation</h4>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                      Let's discuss your project, idea, or collaboration
+                    </p>
+                  </div>
 
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        {t('contact.subject')}
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Your Name <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
+                        id="name"
+                        name="name"
+                        value={formData.name}
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                        placeholder={t('contact.subjectPlaceholder')}
+                        placeholder="e.g., John Doe"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                        placeholder="e.g., john@example.com"
                       />
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        {t('contact.message')}
+                        Message <span className="text-red-500">*</span>
                       </label>
                       <textarea
                         id="message"
@@ -383,9 +396,9 @@ ${formData.message}
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        rows="5"
+                        rows="6"
                         className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                        placeholder={t('contact.messagePlaceholder')}
+                        placeholder="Tell me about your project, idea, or how we can work together..."
                       />
                     </div>
 
@@ -408,7 +421,7 @@ ${formData.message}
                     </button>
 
                     <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-                      💡 You'll receive a notification on Telegram as soon as I get your message.
+                      💡 I'll get back to you within 24 hours
                     </p>
                   </form>
                 </div>

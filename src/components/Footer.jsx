@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom' // ← added for routing
+import { Link } from 'react-router-dom'
 import { portfolioData } from '../data/portfolioData'
 import { useTranslation } from 'react-i18next'
 import {
@@ -11,7 +11,8 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaMapMarkerAlt,
-  FaCode // ← professional icon instead of emoji
+  FaCode,
+  FaWhatsapp
 } from 'react-icons/fa'
 
 const Footer = () => {
@@ -26,37 +27,42 @@ const Footer = () => {
     website: 'Website',
     portfolio: 'Portfolio',
     telegram: 'Telegram',
-    tiktok: 'TikTok'
+    tiktok: 'TikTok',
+    whatsapp: 'WhatsApp'
   }
 
-  // Social icons with pure brand colors – no gray backgrounds
+  // Social icons with EXACT brand colors
   const getSocialIcon = (platform) => {
     switch (platform) {
       case 'github':
-        return <FaGithub className="text-gray-900 dark:text-white hover:opacity-80 transition-opacity text-2xl" />
+        // GitHub brand color: #181717
+        return <FaGithub className="text-[#181717] hover:text-[#2b2b2b] dark:text-white dark:hover:text-gray-300 transition-colors text-3xl" />
       case 'linkedin':
-        return <FaLinkedin className="text-[#0077b5] hover:text-[#005885] transition-colors text-2xl" />
+        return <FaLinkedin className="text-[#0077b5] hover:text-[#005885] transition-colors text-3xl" />
       case 'website':
-        return <FaGlobe className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 transition-colors text-2xl" />
+        return <FaGlobe className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 transition-colors text-3xl" />
       case 'telegram':
-        return <FaTelegram className="text-[#0088cc] hover:text-[#006699] transition-colors text-2xl" />
+        return <FaTelegram className="text-[#0088cc] hover:text-[#006699] transition-colors text-3xl" />
       case 'tiktok':
-        return <FaTiktok className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-2xl" />
+        // TikTok brand color: #000000 (black) with #25F4EE (cyan) accent
+        return <FaTiktok className="text-[#000000] hover:text-[#25F4EE] dark:text-white dark:hover:text-[#25F4EE] transition-colors text-3xl" />
+      case 'whatsapp':
+        return <FaWhatsapp className="text-[#25D366] hover:text-[#1da851] transition-colors text-3xl" />
       default:
         return null
     }
   }
 
-  // Contact info icons
+  // Contact info icons - larger and more specialized
   const contactIcons = {
-    email: <FaEnvelope className="text-red-500 text-xl" />,
-    phone: <FaPhoneAlt className="text-green-500 text-xl" />,
-    location: <FaMapMarkerAlt className="text-blue-500 text-xl" />
+    email: <FaEnvelope className="text-red-500 text-2xl" />,
+    phone: <FaPhoneAlt className="text-green-500 text-2xl" />,
+    location: <FaMapMarkerAlt className="text-blue-500 text-2xl" />
   }
 
   const githubProfileUrl = 'https://github.com/Gebreslassie8'
 
-  // Quick links using React Router paths (no hash, full routes)
+  // Quick links using React Router paths
   const quickLinks = [
     { name: t('nav.home'), href: '/' },
     { name: t('nav.about'), href: '/about' },
@@ -66,15 +72,16 @@ const Footer = () => {
     { name: t('nav.contact'), href: '/contact' }
   ]
 
-  // Social links (merge with defaults)
+  // Social links with WhatsApp added
   const socialLinks = {
     ...personal.socialLinks,
     github: githubProfileUrl,
     telegram: personal.socialLinks?.telegram || 'https://t.me/GD272727',
-    tiktok: personal.socialLinks?.tiktok || 'https://tiktok.com/@gebreslassie27'
+    tiktok: personal.socialLinks?.tiktok || 'https://tiktok.com/@gebreslassie27',
+    whatsapp: personal.socialLinks?.whatsapp || 'https://wa.me/251906995513'
   }
 
-  // Split phone numbers (if multiple)
+  // Split phone numbers
   const phoneNumbers = personal.phone ? personal.phone.split('/') : ['+251906995513']
 
   return (
@@ -95,8 +102,8 @@ const Footer = () => {
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
               {t('footer.description')}
             </p>
-            {/* Social Icons - pure colors, no background */}
-            <div className="flex flex-wrap gap-4">
+            {/* Social Icons - pure brand colors */}
+            <div className="flex flex-wrap gap-5">
               {Object.entries(socialLinks).map(([platform, url]) => (
                 url && (
                   <div key={platform} className="relative group">
@@ -121,7 +128,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Quick Links - using React Router <Link> */}
+          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +150,7 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Contact Info - using React Icons */}
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +158,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h4 className="text-lg font-semibold mb-6">{t('footer.getInTouch')}</h4>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {/* Email */}
               <div className="flex items-center gap-3 text-gray-300">
                 {contactIcons.email}
@@ -162,7 +169,7 @@ const Footer = () => {
                   {personal.email}
                 </a>
               </div>
-              {/* Phone (supports multiple numbers) */}
+              {/* Phone */}
               <div className="flex items-start gap-3 text-gray-300">
                 {contactIcons.phone}
                 <div className="flex flex-col">
@@ -186,7 +193,7 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Bottom Bar with animated signature */}
+        {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -203,7 +210,7 @@ const Footer = () => {
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               className="flex items-center gap-2"
             >
-              <FaCode className="text-accent text-xl" />
+              <FaCode className="text-accent text-2xl" />
               <a
                 href={githubProfileUrl}
                 target="_blank"
@@ -223,7 +230,7 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 w-12 h-12 bg-primary hover:bg-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-40"
+          className="fixed bottom-8 right-8 w-14 h-14 bg-primary hover:bg-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center z-40 text-2xl"
           title="Back to Top"
         >
           ↑
