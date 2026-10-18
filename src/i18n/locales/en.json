@@ -12,15 +12,9 @@
     "title": "Full Stack Software Engineer",
     "subtitle": "Mobile • Web Applications",
     "viewWork": "View My Work",
-    "getInTouch": "Get In Touch"
+    "getInTouch": "Get In Touch",
+    "downloadResume": "Download Resume"
   },
-  "hero": {
-  "title": "Full Stack Software Engineer",
-  "subtitle": "Mobile • Web Applications",
-  "viewWork": "View My Work",
-  "getInTouch": "Get In Touch",
-  "downloadResume": "Download Resume"
-},
   "personal": {
     "title": "Full Stack Software Engineer",
     "subtitle": "Mobile • Web Applications",
