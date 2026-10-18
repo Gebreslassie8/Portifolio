@@ -93,103 +93,78 @@ export const portfolioData = {
     }
   },
 
-  projects: [
-    {
-      id: "project1",
-      title: "Ethiopian IT Park - Digital Library",
-      description: "A comprehensive digital library platform for the Ethiopian IT Park, featuring a modern UI with responsive design, interactive book catalog, and user-friendly navigation system built with React and Tailwind CSS.",
-      image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=250&fit=crop",
-      technologies: ["React", "Tailwind CSS", "Vite", "JavaScript", "REST API"],
-      platform: "web",
-      githubUrl: "https://github.com/Gebreslassie8/Ethiopian-IT-park-Frontend",
-      featured: true,
-      status: "Live",
-      category: "Digital Library",
-      role: "Frontend Developer"
-    },
-    {
-      id: "project2",
-      title: "Online Theater Ticketing System",
-      description: "A seamless web application for booking theater tickets online, featuring real-time seat selection, secure payment gateway integration, and an intuitive user interface for a smooth theater experience.",
-      image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=400&h=250&fit=crop",
-      technologies: ["React", "Tailwind CSS", "Vite", "JavaScript", "Payment Gateway"],
-      platform: "web",
-      githubUrl: "https://github.com/Gebreslassie8/Theaterwebfrontend",
-      featured: true,
-      status: "Live",
-      category: "Entertainment & Booking",
-      role: "Frontend Developer"
-    },
-    {
-      id: "project3",
-      title: "TaskFlow - Productivity App",
-      description: "A Python-based task management application for tracking and organizing daily tasks efficiently.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=250&fit=crop",
-      technologies: ["Python", "SQLite", "Tkinter"],
-      platform: "web",
-      githubUrl: "https://github.com/Gebreslassie8/To-Do-Listpython-project",
-      featured: false,
-      status: "Live",
-      category: "Productivity"
-    },
-    {
-      id: "project4",
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with payment integration and inventory management",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop",
-      technologies: ["TypeScript", "React", "Node.js", "Payment Gateway"],
-      platform: "web",
-      githubUrl: "https://github.com/Gebreslassie8/E-commerce",
-      featured: true,
-      status: "Live",
-      category: "E-Commerce"
-    }
-  ],
+ projects: [
+  {
+    id: "project1",
+    title: "Ethiopian IT Park Enterprise Content Management System",
+    description: "A full-stack enterprise CMS built for the Ethiopian IT Park — featuring role-based access control, content publishing workflows, digital asset management, and a responsive admin dashboard. Frontend deployed on Vercel, backend API on Render.",
+    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=250&fit=crop",
+    technologies: ["React", "Tailwind CSS", "Node.js", "Express", "PostgreSQL", "JWT"],
+    platform: "web",
+    githubUrl: "https://github.com/Gebreslassie8/Ethiopian-IT-park-Frontend",
+    liveUrl: "https://ethiopian-it-park.vercel.app",        // ← update to your actual Vercel deployment
+    backendUrl: "https://ethiopian-it-park-api.onrender.com", // ← update to your Render backend URL
+    featured: true,
+    status: "Live",
+    category: "Enterprise CMS",
+    role: "Full-Stack Developer"
+  },
+  {
+    id: "project2",
+    title: "Online Theater Ticketing System",
+    description: "A complete end-to-end ticketing web application with real-time seat reservations, secure authentication, and a responsive seating map. Frontend on Vercel, REST API on Render.",
+    image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=400&h=250&fit=crop",
+    technologies: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Payment Gateway"],
+    platform: "web",
+    githubUrl: "https://github.com/Gebreslassie8/Theaterwebfrontend",
+    liveUrl: "https://theater-ticketing.vercel.app",         // ← update to your actual Vercel deployment
+    backendUrl: "https://theater-api.onrender.com",         // ← update to your Render backend URL
+    featured: true,
+    status: "Live",
+    category: "Entertainment & Booking",
+    role: "Full-Stack Developer"
+  },
+  {
+    id: "project4",
+    title: "E-Commerce Platform",
+    description: "Full-stack e-commerce solution with secure payments, cart & checkout flow, inventory management, and admin panel. Frontend on Vercel, backend API on Render.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop",
+    technologies: ["TypeScript", "React", "Node.js", "MongoDB", "Payment Gateway", "JWT"],
+    platform: "web",
+    githubUrl: "https://github.com/Gebreslassie8/E-commerce",
+    liveUrl: "https://ecommerce-platform.vercel.app",        // ← update to your actual Vercel deployment
+    backendUrl: "https://ecommerce-api.onrender.com",       // ← update to your Render backend URL
+    featured: true,
+    status: "Live",
+    category: "E-Commerce",
+    role: "Full-Stack Developer"
+  }
+],
 
   experience: [
-    {
-      id: "exp1",
-      company: "TechCorp Inc.",
-      position: "Senior Full Stack Developer",
-      period: "2022 - Present",
-      location: "Remote",
-      description: "Led cross-platform development initiatives and architected scalable solutions for enterprise clients. Managed a team of 5 developers and implemented CI/CD pipelines.",
-      technologies: ["React Native", "Electron", "Next.js", "AWS", "Docker", "TypeScript", "Node.js", "PostgreSQL"],
-      platforms: ["mobile", "desktop", "web"],
-    },
-    {
-      id: "exp2",
-      company: "MobileFirst Solutions",
-      position: "Mobile Developer",
-      period: "2020 - 2022",
-      location: "Remote",
-      description: "Specialized in building high-performance mobile applications for iOS and Android platforms. Collaborated with design teams to create intuitive user experiences.",
-      technologies: ["React Native", "Flutter", "Firebase", "Redux", "iOS", "Android", "REST APIs"],
-      platforms: ["mobile"],
-
-    },
-    {
-      id: "exp3",
-      company: "WebScale Technologies",
-      position: "Full Stack Developer",
-      period: "2018 - 2020",
-      location: "Remote",
-      description: "Developed and maintained web applications using modern JavaScript frameworks. Focused on creating responsive and accessible user interfaces.",
-      technologies: ["React", "Node.js", "MongoDB", "AWS", "Docker", "Express", "TypeScript"],
-      platforms: ["web"],
-
-    },
-    {
-      id: "exp4",
-      company: "DesktopSoft Inc.",
-      position: "Desktop Application Developer",
-      period: "2016 - 2018",
-      location: "Remote",
-      description: "Built desktop applications for Windows and macOS platforms. Focused on creating efficient and user-friendly business applications.",
-      technologies: ["Electron", ".NET", "C#", "SQL Server", "WPF", "Java FX"],
-      platforms: ["desktop"],
-    }
-  ]
+  {
+    id: "exp1",
+    company: "Ethiopian ICT Park",
+    position: "Full-Stack Developer | Content Management System",
+    period: "2017 E.C",
+    location: "Addis Ababa, Ethiopia",
+    description:
+      "On-site software engineering internship at the Ethiopian ICT Park. Engineered a scalable enterprise Content Management System (CMS) with React.js and Node.js/Express.js, implemented JWT authentication and role-based access control, and built modular REST APIs for digital asset management, content publishing, and audit logging.",
+    technologies: ["React", "Tailwind CSS", "Node.js", "Express", "MySQL", "JWT", "RBAC"],
+    platforms: ["web"]
+  },
+  {
+    id: "exp2",
+    company: "Online Theater Ticketing System",
+    position: "Full-Stack Developer | Personal Project",
+    period: "2018 E.C - Present",
+    location: "Addis Ababa, Ethiopia",
+    description:
+      "Architected and built a complete end-to-end ticketing platform with real-time seat reservations, secure authentication, and optimized database schemas. Improved transaction throughput by 15% through query optimization and caching. Deployed frontend on Vercel and backend REST API on Render.",
+    technologies: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Payment Gateway", "JWT"],
+    platforms: ["web"]
+  }
+]
 
 
 }

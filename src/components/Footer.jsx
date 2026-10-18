@@ -11,7 +11,6 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaMapMarkerAlt,
-  FaCode,
   FaWhatsapp
 } from 'react-icons/fa'
 
@@ -35,7 +34,6 @@ const Footer = () => {
   const getSocialIcon = (platform) => {
     switch (platform) {
       case 'github':
-        // GitHub brand color: #181717
         return <FaGithub className="text-[#181717] hover:text-[#2b2b2b] dark:text-white dark:hover:text-gray-300 transition-colors text-3xl" />
       case 'linkedin':
         return <FaLinkedin className="text-[#0077b5] hover:text-[#005885] transition-colors text-3xl" />
@@ -44,7 +42,6 @@ const Footer = () => {
       case 'telegram':
         return <FaTelegram className="text-[#0088cc] hover:text-[#006699] transition-colors text-3xl" />
       case 'tiktok':
-        // TikTok brand color: #000000 (black) with #25F4EE (cyan) accent
         return <FaTiktok className="text-[#000000] hover:text-[#25F4EE] dark:text-white dark:hover:text-[#25F4EE] transition-colors text-3xl" />
       case 'whatsapp':
         return <FaWhatsapp className="text-[#25D366] hover:text-[#1da851] transition-colors text-3xl" />
@@ -53,7 +50,7 @@ const Footer = () => {
     }
   }
 
-  // Contact info icons - larger and more specialized
+  // Contact info icons
   const contactIcons = {
     email: <FaEnvelope className="text-red-500 text-2xl" />,
     phone: <FaPhoneAlt className="text-green-500 text-2xl" />,
@@ -77,7 +74,6 @@ const Footer = () => {
     ...personal.socialLinks,
     github: githubProfileUrl,
     telegram: personal.socialLinks?.telegram || 'https://t.me/GD272727',
-    tiktok: personal.socialLinks?.tiktok || 'https://tiktok.com/@gebreslassie27',
     whatsapp: personal.socialLinks?.whatsapp || 'https://wa.me/251906995513'
   }
 
@@ -102,7 +98,7 @@ const Footer = () => {
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
               {t('footer.description')}
             </p>
-            {/* Social Icons - pure brand colors */}
+            {/* Social Icons */}
             <div className="flex flex-wrap gap-5">
               {Object.entries(socialLinks).map(([platform, url]) => (
                 url && (
@@ -193,7 +189,7 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar — link removed */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -201,26 +197,9 @@ const Footer = () => {
           viewport={{ once: true }}
           className="border-t border-gray-700 pt-8 text-center"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400">
-              © {currentYear} {personal.name}. {t('footer.rights')}
-            </p>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-              className="flex items-center gap-2"
-            >
-              <FaCode className="text-accent text-2xl" />
-              <a
-                href={githubProfileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent font-semibold hover:underline transition"
-              >
-                Made by Gebreslassie Dessie
-              </a>
-            </motion.div>
-          </div>
+          <p className="text-gray-400">
+            © {currentYear} {personal.name}. {t('footer.rights')}
+          </p>
         </motion.div>
 
         {/* Back to Top Button */}

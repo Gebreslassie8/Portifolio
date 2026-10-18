@@ -9,71 +9,67 @@
     "hireMe": "Hire Me"
   },
   "hero": {
-    "title": "Full Stack Developer",
-    "subtitle": "Mobile • Desktop • Web Applications",
+    "title": "Full Stack Software Engineer",
+    "subtitle": "Mobile • Web Applications",
     "viewWork": "View My Work",
     "getInTouch": "Get In Touch"
   },
+  "hero": {
+  "title": "Full Stack Software Engineer",
+  "subtitle": "Mobile • Web Applications",
+  "viewWork": "View My Work",
+  "getInTouch": "Get In Touch",
+  "downloadResume": "Download Resume"
+},
   "personal": {
-    "title": "Full Stack Developer",
-    "subtitle": "Mobile • Desktop • Web Applications",
-    "bio": "Full-stack developer with 5+ years of experience building scalable applications across all platforms. Specialized in React Native, Electron, and modern web technologies.",
+    "title": "Full Stack Software Engineer",
+    "subtitle": "Mobile • Web Applications",
+    "bio": "Full Stack Software Engineer building high-performance web and mobile applications. Specialized in React, Next.js, Node.js, and cross-platform React Native apps. Also providing complete ICT solutions and technical troubleshooting.",
     "detailedBio": [
-      "I specialize in creating cross-platform solutions that work seamlessly on mobile, desktop, and web. With expertise in React Native for mobile apps, Electron for desktop applications, and modern web frameworks, I deliver complete digital experiences.",
-      "My journey started with web development and expanded to include mobile and desktop applications. I believe in writing clean, maintainable code and staying updated with the latest industry trends across all platforms.",
-      "Whether it's a mobile app for iOS/Android, a desktop application for Windows/Mac/Linux, or a responsive web application, I have the skills to bring your ideas to life."
+      "I specialize in building full-stack web applications and cross-platform mobile apps. With expertise in React, Next.js, Node.js, Express, and React Native, I craft complete digital products — from pixel-perfect frontends to robust, scalable backends.",
+      "My journey began with a strong foundation in Software Engineering from Mizan-Tepi University, where I graduated with distinction (3.74/4.00 CGPA). Since then, I've built enterprise systems, e-commerce platforms, and ticketing applications used in real-world scenarios.",
+      "Whether it's a responsive web application, a cross-platform mobile app, or troubleshooting a complex ICT problem, I focus on delivering clean, production-ready solutions that solve real business challenges."
     ]
   },
   "about": {
     "title": "About Me",
     "heading": "Crafting Digital Excellence",
     "stats": {
-      "years": "Years Experience",
+      "years": "Years of Coding",
       "projects": "Projects Completed"
     },
     "personalInfo": "Personal Info",
     "downloadResume": "Download Resume"
   },
   "platforms": {
-    "title": "Multi-Platform Expertise",
-    "description": "Building seamless experiences across all platforms - from mobile apps to desktop software and web applications",
-    "cta": "Ready to bring your idea to life on any platform?",
+    "title": "Full-Stack Expertise",
+    "description": "Building seamless, high-performance experiences across web and mobile platforms",
+    "cta": "Ready to bring your idea to life?",
     "startProject": "Start Your Project",
     "projects": "Projects",
     "experience": "Experience",
     "mobile": {
       "title": "Mobile Development",
-      "description": "Building native-feeling mobile apps for both iOS and Android platforms"
-    },
-    "desktop": {
-      "title": "Desktop Applications",
-      "description": "Creating performant desktop applications for Windows, macOS, and Linux"
+      "description": "Building cross-platform mobile apps using React Native and Flutter"
     },
     "web": {
       "title": "Web Development",
-      "description": "Developing scalable web applications with modern frameworks and best practices"
+      "description": "Developing scalable web applications with React, Next.js, and Node.js"
     }
   },
   "skills": {
     "title": "Technology Stack",
-    "description": "Comprehensive expertise across the entire development stack for all platforms",
+    "description": "Comprehensive expertise across modern web and mobile development",
     "mobile": "Mobile Development",
-    "desktop": "Desktop Development",
     "frontend": "Web Frontend",
     "backend": "Web Backend",
     "tools": "Tools & DevOps",
-    "philosophy": "Cross-Platform Development Philosophy",
-    "philosophyText": "I believe in creating applications that provide consistent user experiences across all platforms while leveraging platform-specific capabilities to deliver optimal performance and native-feeling interactions.",
+    "philosophy": "Full-Stack Development Philosophy",
+    "philosophyText": "I believe in building applications that are clean, scalable, and production-ready. From intuitive user interfaces to secure, well-architected backends, I focus on delivering software that solves real-world problems with elegance and reliability.",
     "items": {
       "react-native": { "description": "Cross-platform mobile framework" },
       "flutter": { "description": "Native performance apps" },
-      "ios": { "description": "Swift & Objective-C" },
-      "android": { "description": "Kotlin & Java" },
       "mobile-ui": { "description": "Responsive mobile design" },
-      "electron": { "description": "Cross-platform desktop apps" },
-      "maui": { "description": "Microsoft ecosystem" },
-      "javafx": { "description": "Enterprise desktop apps" },
-      "tauri": { "description": "Rust-based framework" },
       "react": { "description": "Modern UI development" },
       "nextjs": { "description": "Full-stack React framework" },
       "typescript": { "description": "Type-safe JavaScript" },
@@ -92,56 +88,35 @@
   },
   "projects": {
     "title": "My Projects",
-    "description": "Explore my work across different platforms - from mobile apps to desktop software and web applications",
-    "all": "All Platforms",
-    "mobile": "Mobile",
-    "desktop": "Desktop",
+    "description": "Explore my work — full-stack web applications and enterprise systems, live and in production",
+    "all": "All Projects",
     "web": "Web",
     "code": "Code",
     "liveDemo": "Live Demo",
     "download": "Download",
-    "appStore": "App Store",
-    "playStore": "Play Store",
     "statistics": "Project Statistics",
-    "mobileApps": "Mobile Apps",
-    "desktopApps": "Desktop Apps",
     "webApps": "Web Apps",
     "items": {
       "project1": {
-        "title": "FitTrack Pro Mobile",
-        "description": "Advanced fitness tracking app with AI workout recommendations, social features, and real-time progress analytics. Supports offline mode and syncs across devices.",
-        "category": "Health & Fitness"
+        "title": "Ethiopian IT Park Enterprise CMS",
+        "description": "Full-stack enterprise Content Management System with role-based access control, content publishing workflows, and digital asset management.",
+        "category": "Enterprise CMS"
       },
       "project2": {
-        "title": "TaskFlow Mobile",
-        "description": "Productivity app with intelligent task management, team collaboration, and offline capabilities. Features include Kanban boards and automated reminders.",
-        "category": "Productivity"
+        "title": "Online Theater Ticketing System",
+        "description": "End-to-end ticketing web application with real-time seat reservations, secure authentication, and optimized booking flow.",
+        "category": "Entertainment & Booking"
       },
       "project3": {
-        "title": "CodeSync IDE",
-        "description": "Modern desktop code editor with real-time collaboration, extensive plugin ecosystem, and integrated terminal. Supports multiple programming languages.",
-        "category": "Development Tools"
-      },
-      "project4": {
-        "title": "Finance Dashboard Pro",
-        "description": "Cross-platform desktop application for comprehensive personal finance management. Includes investment tracking and financial reporting features.",
-        "category": "Finance"
-      },
-      "project5": {
         "title": "E-Commerce Platform",
-        "description": "Full-stack e-commerce solution with advanced admin dashboard, payment integration, inventory management, and customer analytics.",
-        "category": "E-commerce"
-      },
-      "project6": {
-        "title": "Project Management Suite",
-        "description": "Real-time collaborative project management platform with Kanban boards, time tracking, resource allocation, and comprehensive reporting.",
-        "category": "Productivity"
+        "description": "Full-stack e-commerce solution with secure payments, cart & checkout flow, inventory management, and admin panel.",
+        "category": "E-Commerce"
       }
     }
   },
   "experience": {
     "title": "Professional Experience",
-    "description": "My journey through cross-platform development across mobile, desktop, and web technologies",
+    "description": "Real-world experience building production-grade full-stack applications",
     "achievements": "Key Achievements",
     "highlights": "Career Highlights",
     "companies": "Companies",
@@ -149,110 +124,73 @@
     "yearsExp": "Years Exp",
     "platformsCount": "Platforms",
     "platforms": {
-      "mobile": "Mobile",
-      "desktop": "Desktop",
       "web": "Web"
     },
     "items": {
       "exp1": {
-        "position": "Senior Full Stack Developer",
-        "company": "TechCorp Inc.",
-        "location": "San Francisco, CA",
-        "period": "2022 - Present",
-        "description": "Lead development of cross-platform applications and mentor junior developers in modern software engineering practices across mobile, desktop, and web.",
+        "position": "Full-Stack Developer | CMS",
+        "company": "Ethiopian ICT Park",
+        "location": "Addis Ababa, Ethiopia",
+        "period": "2017 E.C",
+        "description": "On-site software engineering internship engineering a scalable enterprise CMS with React.js and Node.js/Express.js.",
         "achievements": [
-          "Architected and launched 3 mobile apps with 100k+ downloads across app stores",
-          "Developed desktop applications used by 10k+ enterprise users worldwide",
-          "Led migration of web platform to microservices architecture, improving scalability by 200%",
-          "Mentored 4 junior developers in cross-platform development best practices",
-          "Implemented CI/CD pipelines reducing deployment time by 70% across all platforms"
+          "Engineered a scalable, high-performance CMS with React.js frontend and Node.js/Express.js RESTful APIs",
+          "Implemented JWT authentication and granular Role-Based Access Control (RBAC)",
+          "Built full CRUD workflows for strict data security and administrative integrity",
+          "Designed modular API routes integrated with cloud/database persistence",
+          "Streamlined digital asset management, content publishing, and audit logging"
         ]
       },
       "exp2": {
-        "position": "Mobile Lead Developer",
-        "company": "MobileFirst Solutions",
-        "location": "Remote",
-        "period": "2020 - 2022",
-        "description": "Specialized in cross-platform mobile application development for various industries with focus on performance and user experience.",
+        "position": "Full-Stack Developer | Ticketing System",
+        "company": "Online Theater Ticketing System",
+        "location": "Addis Ababa, Ethiopia",
+        "period": "2018 E.C - Present",
+        "description": "Architected and built a complete end-to-end ticketing platform with real-time seat reservations and secure authentication.",
         "achievements": [
-          "Led development of 8+ mobile applications for healthcare and finance sectors",
-          "Achieved 4.8+ average star ratings across all published applications",
-          "Reduced app load times by 60% through performance optimization",
-          "Implemented offline-first architectures for unreliable network conditions",
-          "Integrated advanced features like push notifications and in-app purchases"
-        ]
-      },
-      "exp3": {
-        "position": "Full Stack Web Developer",
-        "company": "WebScale Technologies",
-        "location": "New York, NY",
-        "period": "2018 - 2020",
-        "description": "Developed responsive web applications and backend systems for various clients, focusing on scalability and user experience.",
-        "achievements": [
-          "Built responsive web applications serving 50k+ monthly active users",
-          "Improved website performance scores by 40% through optimization",
-          "Developed RESTful APIs serving multiple client applications",
-          "Implemented comprehensive testing strategies increasing code coverage to 85%",
-          "Integrated third-party APIs and services for enhanced functionality"
-        ]
-      },
-      "exp4": {
-        "position": "Desktop Application Developer",
-        "company": "DesktopSoft Inc.",
-        "location": "Seattle, WA",
-        "period": "2016 - 2018",
-        "description": "Focused on developing cross-platform desktop applications for enterprise clients with emphasis on performance and security.",
-        "achievements": [
-          "Developed 5+ desktop applications for enterprise clients",
-          "Created applications with native performance using Electron and .NET",
-          "Implemented auto-update mechanisms for seamless user experience",
-          "Built secure desktop applications handling sensitive financial data",
-          "Optimized applications for Windows, macOS, and Linux platforms"
+          "Built full ticketing web app with React.js + TypeScript frontend and Node.js/Express.js backend",
+          "Engineered interactive real-time seat reservation interface and responsive seating map",
+          "Designed optimized database schemas for showtime schedules and user bookings",
+          "Optimized queries and caching to support 15% growth in transaction volume",
+          "Deployed frontend on Vercel and backend REST API on Render"
         ]
       }
     }
   },
   "testimonials": {
-    "title": "Client Testimonials",
-    "description": "Don't just take my word for it - hear what clients and colleagues have to say about working with me",
+    "title": "What Colleagues Say",
+    "description": "Feedback from collaborators and mentors I've worked with",
     "items": {
       "testimonial1": {
-        "name": "Alemayehu Tekle",
-        "position": "CEO, Tech Innovation Africa",
-        "content": "Gebreslassie delivered exceptional cross-platform solutions tailored for the Ethiopian market. His understanding of local user needs combined with technical excellence is remarkable."
+        "name": "Ethiopian ICT Park Mentor",
+        "position": "Senior Engineer, ICT Park",
+        "content": "Gebreslassie delivered a robust enterprise CMS with excellent code quality and a strong understanding of security best practices. A dedicated, fast-learning engineer."
       },
       "testimonial2": {
-        "name": "Meron Abebe",
-        "position": "Product Manager, Addis Tech Solutions",
-        "content": "Working with Gebreslassie on our mobile applications was transformative. His apps handle Ethiopia's unique network conditions beautifully while maintaining excellent user experience."
-      },
-      "testimonial3": {
-        "name": "Samuel Johnson",
-        "position": "Director, African Digital Agency",
-        "content": "Gebreslassie's desktop applications have revolutionized how Ethiopian businesses operate. His attention to offline functionality and local requirements is outstanding."
+        "name": "Project Collaborator",
+        "position": "Full-Stack Team",
+        "content": "Working with Gebreslassie on the Theater Ticketing System was smooth. His backend architecture and database design made the platform scale beautifully."
       }
     }
   },
   "contact": {
     "title": "Get In Touch",
     "heading": "Let's Build Something Great",
-    "description": "I'm always interested in hearing about new opportunities and exciting projects. I'm passionate about creating digital solutions that address real challenges in the African context. Whether you need a mobile app, desktop software, or web application tailored for Ethiopian or African markets, I'm here to help bring your vision to reality.",
+    "description": "I'm always interested in hearing about new opportunities and exciting projects. Whether you need a full-stack web application, a mobile app, or complete ICT solutions and troubleshooting, I'm here to help bring your vision to reality.",
     "name": "Your Name",
     "email": "Email Address",
-    "subject": "Subject",
     "message": "Message",
     "send": "Send Message",
     "successMessage": "Thank you for your message! I'll get back to you soon.",
-    "namePlaceholder": "Gebreslassie Dessie",
-    "emailPlaceholder": "gebreslassiedessie@gmail.com",
-    "subjectPlaceholder": "Project Collaboration",
-    "messagePlaceholder": "Tell me about your project..."
+    "namePlaceholder": "Your full name",
+    "emailPlaceholder": "you@example.com",
+    "messagePlaceholder": "Tell me about your project or the problem you need solved..."
   },
   "footer": {
-    "description": "Ethiopian Full Stack Developer specializing in mobile, desktop, and web applications. Creating digital experiences that make a difference across all platforms.",
+    "description": "Full Stack Software Engineer building production-grade web and mobile applications. Also providing complete ICT solutions and technical troubleshooting.",
     "quickLinks": "Quick Links",
     "getInTouch": "Get In Touch",
     "rights": "All rights reserved.",
-    "madeWith": "Made with ❤️ using React & Tailwind CSS"
+    "madeWith": "Built with React & Tailwind CSS"
   }
 }

@@ -17,32 +17,71 @@ const About = () => {
     }
   }
 
-  // Professional platform stats with emoji icons - NO NUMBERS
+  // ✅ FIXED: direct gradient colors (no more fragile .split().replace())
   const platformStats = [
     {
-      value: '✓',
-      label: 'Mobile Applications',
       icon: '📱',
-      bgColor: 'from-green-500 to-emerald-500'
+      label: 'Mobile Applications',
+      description: 'React Native • Flutter',
+      gradient: 'linear-gradient(135deg, #22c55e, #10b981)',
+      textColor: 'text-green-600 dark:text-green-400'
     },
     {
-      value: '✓',
-      label: 'Desktop Applications',
-      icon: '💻',
-      bgColor: 'from-purple-500 to-pink-500'
-    },
-    {
-      value: '✓',
-      label: 'Web Applications',
       icon: '🌐',
-      bgColor: 'from-teal-500 to-cyan-500'
+      label: 'Web Applications',
+      description: 'React • Next.js • Node.js',
+      gradient: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
+      textColor: 'text-blue-600 dark:text-blue-400'
     }
   ]
 
-  // GitHub profile URL
+  const itSolutions = [
+    {
+      icon: '🛠️',
+      title: 'Software Troubleshooting',
+      description: 'Diagnosing bugs, performance bottlenecks, and runtime errors in web and mobile applications.',
+      color: 'text-blue-600 dark:text-blue-400',
+      bg: 'bg-blue-50 dark:bg-blue-900/20'
+    },
+    {
+      icon: '🌐',
+      title: 'Network & Deployment Issues',
+      description: 'Resolving API integration failures, CORS errors, DNS configurations, and cloud deployment problems.',
+      color: 'text-green-600 dark:text-green-400',
+      bg: 'bg-green-50 dark:bg-green-900/20'
+    },
+    {
+      icon: '🗄️',
+      title: 'Database & Query Optimization',
+      description: 'Fixing slow queries, schema mismatches, and data integrity issues in SQL and NoSQL databases.',
+      color: 'text-purple-600 dark:text-purple-400',
+      bg: 'bg-purple-50 dark:bg-purple-900/20'
+    },
+    {
+      icon: '🔐',
+      title: 'Security & Authentication',
+      description: 'Debugging JWT, OAuth, RBAC permissions, and identifying common vulnerabilities in web systems.',
+      color: 'text-orange-600 dark:text-orange-400',
+      bg: 'bg-orange-50 dark:bg-orange-900/20'
+    },
+    {
+      icon: '⚙️',
+      title: 'System Setup & ICT Support',
+      description: 'Installing, configuring, and maintaining software systems, development environments, and ICT infrastructure.',
+      color: 'text-red-600 dark:text-red-400',
+      bg: 'bg-red-50 dark:bg-red-900/20'
+    },
+    {
+      icon: '💡',
+      title: 'Performance & Bug Fixing',
+      description: 'Profiling applications, reducing load times, and providing permanent fixes rather than temporary patches.',
+      color: 'text-teal-600 dark:text-teal-400',
+      bg: 'bg-teal-50 dark:bg-teal-900/20'
+    }
+  ]
+
   const githubProfileUrl = 'https://github.com/Gebreslassie8'
 
-  // Social links with WhatsApp and Telegram
   const socialLinks = [
     {
       platform: 'github',
@@ -107,9 +146,8 @@ const About = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* ===== DECORATED "ABOUT ME" HEADER ===== */}
+          {/* Header */}
           <div className="text-center mb-16">
-            {/* Decorative line above */}
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: '60px' }}
@@ -118,12 +156,10 @@ const About = () => {
               className="h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-4"
             ></motion.div>
 
-            {/* Title with decoration */}
             <div className="relative inline-block">
               <h2 className="text-4xl md:text-5xl font-bold text-secondary dark:text-light">
                 <span className="relative">
                   {t('about.title')}
-                  {/* Decorative underline */}
                   <motion.span
                     initial={{ width: 0 }}
                     whileInView={{ width: '100%' }}
@@ -135,46 +171,19 @@ const About = () => {
               </h2>
             </div>
 
-            {/* Decorative dots */}
             <div className="flex justify-center gap-2 mt-4">
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.6 }}
-                viewport={{ once: true }}
-                className="w-2 h-2 rounded-full bg-primary"
-              ></motion.div>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.7 }}
-                viewport={{ once: true }}
-                className="w-2 h-2 rounded-full bg-accent"
-              ></motion.div>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.8 }}
-                viewport={{ once: true }}
-                className="w-2 h-2 rounded-full bg-primary"
-              ></motion.div>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.9 }}
-                viewport={{ once: true }}
-                className="w-2 h-2 rounded-full bg-accent"
-              ></motion.div>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.4, delay: 1.0 }}
-                viewport={{ once: true }}
-                className="w-2 h-2 rounded-full bg-primary"
-              ></motion.div>
+              {[0.6, 0.7, 0.8, 0.9, 1.0].map((delay, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 0.4, delay }}
+                  viewport={{ once: true }}
+                  className={`w-2 h-2 rounded-full ${i % 2 === 0 ? 'bg-primary' : 'bg-accent'}`}
+                ></motion.div>
+              ))}
             </div>
 
-            {/* Subtle decorative line below */}
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: '40px' }}
@@ -185,7 +194,7 @@ const About = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            {/* Left Column - Content */}
+            {/* Left Column */}
             <div>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -196,38 +205,56 @@ const About = () => {
                 <h3 className="text-3xl font-semibold text-secondary dark:text-light mb-4">
                   Hi, I'm {personal.name} 👋
                 </h3>
-                <div className="inline-block bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                  🚀 Full Stack Developer
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 shadow-md">
+                  🚀 Full Stack Software Engineer
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
-                  Full-stack developer building scalable applications across all platforms. Specialized in React Native, Electron, and modern web technologies.
+                  Full Stack Software Engineer specializing in building high-performance web and mobile applications. I craft clean, scalable, and production-ready solutions using modern technologies — from responsive React interfaces to robust Node.js backends and cross-platform React Native apps. Beyond development, I provide complete <strong className="text-primary dark:text-accent">ICT solutions</strong> and <strong className="text-primary dark:text-accent">technical troubleshooting</strong> for businesses and individuals.
                 </p>
               </motion.div>
 
-              {/* Platform Stats Cards - Now showing checkmarks instead of numbers */}
+              {/* ✅ FIXED Platform Stats */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-8"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8"
               >
                 {platformStats.map((stat, idx) => (
-                  <div
+                  <motion.div
                     key={idx}
-                    className="group relative rounded-xl bg-gradient-to-br p-[1px] hover:shadow-xl transition-all"
-                    style={{ background: `linear-gradient(135deg, ${stat.bgColor.split(' ')[1]}, ${stat.bgColor.split(' ')[3]})` }}
+                    whileHover={{ y: -5 }}
+                    transition={{ duration: 0.3 }}
+                    className="group relative rounded-2xl p-[1.5px] hover:shadow-2xl transition-all duration-300"
+                    style={{ background: stat.gradient }}
                   >
-                    <div className="bg-white dark:bg-gray-800 rounded-xl p-5 text-center transition-all group-hover:scale-[0.97]">
-                      <div className="text-4xl mb-2">{stat.icon}</div>
-                      <div className="text-2xl font-bold text-green-500 dark:text-green-400">{stat.value}</div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{stat.label}</div>
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center transition-all duration-300 group-hover:scale-[0.98]">
+                      <div className="text-5xl mb-3 transition-transform duration-300 group-hover:scale-110">
+                        {stat.icon}
+                      </div>
+                      <div className={`text-sm font-semibold uppercase tracking-wider ${stat.textColor} mb-1`}>
+                        {stat.label}
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                        {stat.description}
+                      </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="mt-6 text-sm text-gray-500 dark:text-gray-400 italic text-center sm:text-left"
+              >
+                Continuously expanding into new technologies with a strong focus on delivering production-quality code.
+              </motion.p>
             </div>
 
-            {/* Right Column - Profile Photo with animations */}
+            {/* Right Column - Profile Photo */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -251,7 +278,7 @@ const About = () => {
                 <div className="absolute -bottom-3 -left-3 w-4 h-4 bg-accent rounded-full animate-pulse delay-1000"></div>
               </motion.div>
 
-              {/* Personal Info Card with React Icons */}
+              {/* Personal Info Card */}
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 w-full max-w-md shadow-xl hover:shadow-2xl transition-shadow">
                 <h4 className="text-xl font-semibold text-secondary dark:text-light mb-6 text-center">
                   {t('about.personalInfo')}
@@ -271,7 +298,7 @@ const About = () => {
                   </div>
                   <div className="flex items-center">
                     <FaCode className="text-primary text-xl mr-4" />
-                    <span className="text-gray-600 dark:text-gray-300 font-medium">Full Stack Developer</span>
+                    <span className="text-gray-600 dark:text-gray-300 font-medium">Full Stack Software Engineer</span>
                   </div>
                 </div>
 
@@ -334,7 +361,64 @@ const About = () => {
             </motion.div>
           </div>
 
-          {/* Detailed Bio Section */}
+          {/* IT Solutions Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <div className="text-center mb-10">
+              <h4 className="text-2xl font-bold text-secondary dark:text-light mb-2">
+                IT Solutions & Troubleshooting
+              </h4>
+              <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Beyond development, I provide end-to-end ICT support — diagnosing problems, delivering practical solutions, and helping businesses and individuals keep their systems running smoothly.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {itSolutions.map((solution, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -6 }}
+                  className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                >
+                  <div className={`w-12 h-12 rounded-xl ${solution.bg} flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    {solution.icon}
+                  </div>
+                  <h5 className={`text-lg font-semibold ${solution.color} mb-2`}>
+                    {solution.title}
+                  </h5>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {solution.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="mt-8 bg-gradient-to-r from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10 rounded-xl p-6 border-l-4 border-primary"
+            >
+              <h5 className="font-semibold text-secondary dark:text-light mb-2 flex items-center gap-2">
+                <span>💬</span> How I Approach Troubleshooting
+              </h5>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Every technical problem has a root cause. My approach is simple: <strong>listen carefully</strong>, <strong>reproduce the issue</strong>, <strong>identify the source</strong>, and <strong>deliver a permanent fix</strong> — not a temporary workaround. Whether it's a broken deployment, a slow database, a failing login system, or setting up an entire ICT environment from scratch, I focus on solutions that save time, reduce downtime, and prevent the same issue from returning.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* Journey Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -348,7 +432,10 @@ const About = () => {
               </h4>
               <div className="space-y-4 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                 <p>
-                  Full-stack developer building scalable applications across all platforms. Specialized in React Native, Electron, and modern web technologies.
+                  I'm a passionate Full Stack Software Engineer dedicated to creating impactful digital experiences. My journey began with a strong foundation in Software Engineering from Mizan-Tepi University, where I graduated with distinction (3.74/4.00 CGPA).
+                </p>
+                <p>
+                  Today, I focus on building complete applications — from pixel-perfect frontends to reliable, well-architected backends. Alongside development, I solve real-world ICT problems: troubleshooting software issues, fixing deployment failures, securing systems, and helping organizations adopt the right technology. I believe great engineering is a balance of clean code, thoughtful design, and practical problem solving.
                 </p>
               </div>
 
@@ -359,8 +446,8 @@ const About = () => {
                 <p className="text-gray-600 dark:text-gray-300 text-center">
                   <strong>Frontend:</strong> React, Next.js, TypeScript, Tailwind CSS<br />
                   <strong>Backend:</strong> Node.js, Python, Express, Django<br />
-                  <strong>Database:</strong> MongoDB, PostgreSQL, Firebase<br />
-                  <strong>DevOps:</strong> Docker, AWS, CI/CD, Cloud Deployment
+                  <strong>Mobile:</strong> React Native, Flutter<br />
+                  <strong>Database & DevOps:</strong> MongoDB, PostgreSQL, Firebase, Docker, AWS, CI/CD
                 </p>
               </div>
             </div>

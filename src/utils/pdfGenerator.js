@@ -5,410 +5,528 @@ export const generateResumePDF = async (portfolioData) => {
   const doc = new jsPDF('p', 'mm', 'a4');
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 20;
+  const margin = 18;
   let yPosition = margin;
 
-  // ===== HEADER WITH NAME AND TITLE =====
-  const addHeader = () => {
-    // Clean white background for header
-    doc.setFillColor(255, 255, 255);
-    doc.rect(0, 0, pageWidth, 50, 'F');
-
-    // Name - Large and bold
-    doc.setTextColor(25, 42, 86);
-    doc.setFontSize(28);
-    doc.setFont('helvetica', 'bold');
-    doc.text('GEBRESLASSIE DESSIE', pageWidth / 2, 25, { align: 'center' });
-
-    // Title
-    doc.setTextColor(52, 152, 219);
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'normal');
-    doc.text('Full-Stack Developer', pageWidth / 2, 35, { align: 'center' });
-
-    // Divider line
-    doc.setDrawColor(52, 152, 219);
-    doc.setLineWidth(0.5);
-    doc.line(margin + 40, 42, pageWidth - margin - 40, 42);
-
-    // Contact info - centered
-    doc.setFontSize(8);
-    doc.setTextColor(80, 80, 80);
-    doc.text('gebreslassiedessie@gmail.com  |  +251906995513  |  Addis Ababa, Ethiopia', pageWidth / 2, 48, { align: 'center' });
+  // ===== SMART COLOR PALETTE =====
+  const C = {
+    navy: [25, 42, 86],
+    blue: [52, 152, 219],
+    blueLight: [235, 245, 252],
+    blueMid: [174, 214, 241],
+    green: [39, 174, 96],
+    greenLight: [232, 248, 240],
+    gray: [100, 100, 100],
+    grayLight: [150, 150, 150],
+    text: [55, 65, 81],
+    bg: [248, 250, 252],
+    border: [226, 232, 240],
+    white: [255, 255, 255],
+    purple: [155, 89, 182],
+    orange: [230, 126, 34],
+    red: [231, 76, 60]
   };
 
-  // ===== SECTION HEADER =====
-  const addSectionHeader = (title, y) => {
-    doc.setTextColor(25, 42, 86);
-    doc.setFontSize(12);
+  // ===== HEADER — SMART SIDEBAR DESIGN =====
+  const addHeader = () => {
+    // Left navy sidebar
+    doc.setFillColor(...C.navy);
+    doc.rect(0, 0, 10, 78, 'F');
+
+    // Right subtle background
+    doc.setFillColor(...C.bg);
+    doc.rect(10, 0, pageWidth - 10, 78, 'F');
+
+    // Accent line under header
+    doc.setFillColor(...C.blue);
+    doc.rect(10, 78, pageWidth - 10, 1.5, 'F');
+
+    // Name
+    doc.setTextColor(...C.navy);
+    doc.setFontSize(24);
     doc.setFont('helvetica', 'bold');
-    doc.text(title, margin, y);
+    doc.text('GEBRESLASSIE DESSIE AGDEW', 20, 20);
+
+    // Title
+    doc.setTextColor(...C.blue);
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Full Stack Software Engineer  |  ICT Solutions Specialist', 20, 29);
+
+    // Divider
+    doc.setDrawColor(...C.blue);
+    doc.setLineWidth(1);
+    doc.line(20, 33, 75, 33);
+
+    // ===== CONTACT GRID (2 columns) =====
+    doc.setFontSize(8.5);
+
+    const contactLeft = [
+      { label: 'Email', value: 'gebreslassiedessie@gmail.com' },
+      { label: 'Phone', value: '+251 902 067 211 / +251 906 995 513' },
+      { label: 'Location', value: 'Addis Ababa, Ethiopia' }
+    ];
+
+    let cy = 42;
+    contactLeft.forEach(item => {
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(...C.navy);
+      doc.text(item.label + ':', 20, cy);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(...C.text);
+      doc.text(item.value, 40, cy);
+      cy += 5.5;
+    });
+
+    // Right column links
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...C.navy);
+    doc.text('GitHub:', 120, 42);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...C.blue);
+    doc.textWithLink('github.com/Gebreslassie8', 135, 42, { url: 'https://github.com/Gebreslassie8' });
+
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...C.navy);
+    doc.text('Portfolio:', 120, 47.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...C.blue);
+    doc.textWithLink('portfolio-igqe.vercel.app', 137, 47.5, { url: 'https://portfolio-igqe.vercel.app' });
+
+    // ===== ICT SOLUTIONS BADGE =====
+    doc.setFillColor(...C.blue);
+    doc.roundedRect(pageWidth - 78, 54, 62, 8, 2, 2, 'F');
+    doc.setTextColor(...C.white);
+    doc.setFontSize(6.8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('ALL ICT SOLUTIONS PROVIDER', pageWidth - 75, 59);
+  };
+
+  // ===== SMART SECTION HEADER =====
+  const addSectionHeader = (title, y) => {
+    // Left accent block
+    doc.setFillColor(...C.blue);
+    doc.rect(margin, y - 3.5, 3.5, 7, 'F');
+
+    // Title
+    doc.setTextColor(...C.navy);
+    doc.setFontSize(11.5);
+    doc.setFont('helvetica', 'bold');
+    doc.text(title.toUpperCase(), margin + 7, y + 1);
 
     // Underline
-    doc.setDrawColor(52, 152, 219);
-    doc.setLineWidth(0.5);
-    doc.line(margin, y + 2, margin + doc.getTextWidth(title) + 10, y + 2);
+    doc.setDrawColor(...C.border);
+    doc.setLineWidth(0.4);
+    doc.line(margin, y + 4, pageWidth - margin, y + 4);
 
-    return y + 8;
+    return y + 10;
   };
 
   // ===== PROFESSIONAL SUMMARY =====
   const addSummary = (y) => {
-    y = addSectionHeader('PROFESSIONAL SUMMARY', y);
+    y = addSectionHeader('Professional Summary', y);
 
-    doc.setTextColor(60, 60, 60);
-    doc.setFontSize(9);
+    const summary = 'High-achieving Full Stack Software Engineer with a 3.74/4.00 CGPA from Mizan-Tepi University and a 73.75% National Exit Exam score. Specialized in modern full-stack web development with core expertise in React.js, Next.js, Node.js, Express.js, TypeScript, and Tailwind CSS. Currently expanding expertise into cross-platform Mobile App Development using Flutter and React Native. Fast learner with strong analytical skills, creative project ideation, and a commitment to writing clean, scalable, production-ready code. Provider of all ICT solutions — from web and mobile applications to enterprise systems, cloud solutions, and digital transformation.';
+
+    doc.setTextColor(...C.text);
+    doc.setFontSize(8.8);
     doc.setFont('helvetica', 'normal');
 
-    const summary = 'Results-oriented Full-Stack Developer with hands-on experience building scalable web applications at ICT Park. Proficient in React.js, Tailwind CSS, Node.js, MySQL, and Supabase. Holds a B.Sc. in Software Engineering from Mizan Tepi University. Passionate about delivering high-performance, user-centric solutions.';
-
-    const wrappedSummary = doc.splitTextToSize(summary, pageWidth - (2 * margin));
-    wrappedSummary.forEach(line => {
+    const wrapped = doc.splitTextToSize(summary, pageWidth - (2 * margin));
+    wrapped.forEach(line => {
       doc.text(line, margin, y);
-      y += 5;
+      y += 4.6;
     });
 
-    return y + 8;
+    return y + 5;
+  };
+
+  // ===== EDUCATION & CREDENTIALS (with short coursework) =====
+  const addEducation = (y) => {
+    y = addSectionHeader('Education & Credentials', y);
+
+    // Card
+    doc.setFillColor(...C.blueLight);
+    doc.roundedRect(margin, y - 2, pageWidth - (2 * margin), 28, 2.5, 2.5, 'F');
+    doc.setDrawColor(...C.blueMid);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(margin, y - 2, pageWidth - (2 * margin), 28, 2.5, 2.5, 'S');
+
+    // Left accent
+    doc.setFillColor(...C.blue);
+    doc.rect(margin, y - 2, 3, 28, 'F');
+
+    // Degree
+    doc.setTextColor(...C.navy);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text('B.Sc. in Software Engineering', margin + 7, y + 5);
+
+    // Year badge
+    doc.setFillColor(...C.blue);
+    doc.roundedRect(pageWidth - margin - 37, y + 1, 34, 6.5, 1.5, 1.5, 'F');
+    doc.setTextColor(...C.white);
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'bold');
+    doc.text('2014 - 2018 E.C', pageWidth - margin - 35, y + 5.5);
+
+    // University
+    doc.setTextColor(...C.gray);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Mizan-Tepi University', margin + 7, y + 11.5);
+
+    // CGPA - GREEN BOLD
+    doc.setTextColor(...C.green);
+    doc.setFontSize(8.5);
+    doc.setFont('helvetica', 'bold');
+    doc.text('• CGPA: 3.74/4.00', margin + 7, y + 17);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...C.gray);
+    doc.text('(Graduated with Distinction)', margin + 42, y + 17);
+
+    // ---- SHORT COURSEWORK (only main ones) ----
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...C.navy);
+    doc.setFontSize(7.8);
+    doc.text('Relevant Coursework:', margin + 7, y + 23);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...C.text);
+    doc.setFontSize(7.5);
+    // Select only the core/main courses (4-5)
+    const mainCourses = 'Operating Systems, Web Security, Mobile Application Development, Data Structures & Algorithms';
+    doc.text(mainCourses, margin + 42, y + 23);
+
+    return y + 34;
   };
 
   // ===== TECHNICAL SKILLS =====
   const addSkills = (y) => {
-    y = addSectionHeader('TECHNICAL SKILLS', y);
+    y = addSectionHeader('Technical Skills', y);
 
-    const skillCategories = [
-      { title: 'Mobile Development', skills: ['React Native', 'Flutter', 'iOS Development', 'Android Development', 'Mobile UI/UX'] },
-      { title: 'Desktop Development', skills: ['Electron', '.NET MAUI', 'Java FX', 'Tauri'] },
-      { title: 'Web Frontend', skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vue.js'] },
-      { title: 'Web Backend', skills: ['Node.js', 'Express', 'Python/Django', 'PostgreSQL', 'MongoDB'] },
-      { title: 'Tools & Platforms', skills: ['Git/GitHub', 'Docker', 'Vercel/Netlify', 'CI/CD Pipelines', 'Agile Methodologies'] }
-    ];
-
-    skillCategories.forEach((category, catIndex) => {
-      if (y > pageHeight - 40) {
-        doc.addPage();
-        y = margin;
-        y = addSectionHeader('TECHNICAL SKILLS (cont.)', y);
-      }
-
-      // Category title
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(52, 152, 219);
-      doc.setFontSize(9);
-      doc.text(category.title + ':', margin, y);
-      y += 4;
-
-      // Skills as clean text
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(8.5);
-      doc.setTextColor(60, 60, 60);
-
-      const skillsText = category.skills.join('  •  ');
-      const wrappedSkills = doc.splitTextToSize(skillsText, pageWidth - (2 * margin));
-      wrappedSkills.forEach(line => {
-        doc.text(line, margin + 2, y);
-        y += 4.5;
-      });
-
-      y += 4;
-    });
-
-    return y + 5;
-  };
-
-  // ===== PROFESSIONAL EXPERIENCE =====
-  const addExperience = (y) => {
-    y = addSectionHeader('PROFESSIONAL EXPERIENCE', y);
-
-    const experiences = [
+    const skillGroups = [
       {
-        company: 'ICT Park Company',
-        position: 'Full-Stack Developer | Content Management System',
-        period: '2017 E.C',
-        description: [
-          'Designed and developed a comprehensive Content Management System to digitize book cataloging, member registration, and processes.',
-          'Built an intuitive frontend interface using React and Tailwind CSS for librarians and patrons.',
-          'Engineered backend APIs using Node.js and MySQL for efficient data management.',
-          'Implemented search and filter functionality for quick book discovery.',
-          'Developed admin dashboard for monitoring library activities and generating reports.'
-        ],
-        technologies: ['React', 'Tailwind CSS', 'Node.js', 'MySQL']
+        label: 'Frontend Web',
+        skills: 'React.js, Next.js, TypeScript, JavaScript (ES6+), Vue.js, Tailwind CSS, HTML5, CSS3, Responsive Design',
+        color: C.blue
       },
       {
-        company: 'Online Theatre Ticketing System',
-        position: 'Full-Stack Developer',
-        period: '2018 E.C',
-        description: [
-          'Architected the backend of an online theatre ticketing platform, optimizing queries and caching to support a 15% growth in transaction volume.',
-          'Integrated core backend systems, including secure payment gateways, automated notifications, and real-time seat inventory APIs to improve checkout retention.'
-        ],
-        technologies: ['React', 'Node.js', 'Payment Gateway', 'REST APIs']
+        label: 'Backend Web',
+        skills: 'Node.js, Express.js, Java, RESTful APIs, MVC Architecture, JWT Authentication',
+        color: C.green
+      },
+      {
+        label: 'Mobile Development',
+        skills: 'Flutter, Dart, React Native (currently studying and building projects)',
+        color: C.purple
+      },
+      {
+        label: 'Database & Tools',
+        skills: 'PostgreSQL, MySQL, MongoDB, Supabase, Git, GitHub, Vercel, Render, Postman, NPM',
+        color: C.orange
+      },
+      {
+        label: 'Cloud & Security',
+        skills: 'Cloud Systems, Web Security Fundamentals, CI/CD Pipelines, Docker (learning)',
+        color: C.red
+      },
+      {
+        label: 'Corporate Experience',
+        skills: 'On-site Software Engineering Internship at the Ethiopian ICT Park (2025)',
+        color: [44, 62, 80]
       }
     ];
 
-    experiences.forEach((exp, index) => {
-      if (y > pageHeight - 80) {
+    skillGroups.forEach(group => {
+      if (y > pageHeight - 30) {
         doc.addPage();
         y = margin;
-        y = addSectionHeader('PROFESSIONAL EXPERIENCE (cont.)', y);
+        y = addSectionHeader('Technical Skills (continued)', y);
       }
 
-      // Company - bold
+      // Colored dot
+      doc.setFillColor(...group.color);
+      doc.circle(margin + 2, y - 1, 1.3, 'F');
+
+      // Label
+      doc.setTextColor(...C.navy);
+      doc.setFontSize(8.8);
       doc.setFont('helvetica', 'bold');
-      doc.setTextColor(25, 42, 86);
-      doc.setFontSize(10);
-      doc.text(exp.company, margin, y);
+      doc.text(group.label + ':', margin + 6, y);
 
-      // Period - bold and blue
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(52, 152, 219);
-      doc.setFontSize(9);
-      doc.text(exp.period, pageWidth - margin - doc.getTextWidth(exp.period), y);
-      y += 5;
-
-      // Position
-      doc.setFont('helvetica', 'italic');
-      doc.setTextColor(60, 60, 60);
-      doc.setFontSize(9);
-      doc.text(exp.position, margin, y);
-      y += 5;
-
-      // Description with bullet points
+      // Skills
       doc.setFont('helvetica', 'normal');
-      doc.setTextColor(60, 60, 60);
-      doc.setFontSize(8.5);
+      doc.setFontSize(8.2);
+      doc.setTextColor(...C.text);
 
-      exp.description.forEach((point) => {
-        const wrappedPoint = doc.splitTextToSize('• ' + point, pageWidth - (2 * margin) - 4);
-        wrappedPoint.forEach((line, lineIdx) => {
-          const indent = lineIdx === 0 ? 0 : 6;
-          doc.text(line, margin + indent, y);
-          y += 4.5;
-        });
+      const wrapped = doc.splitTextToSize(group.skills, pageWidth - margin - 48);
+      wrapped.forEach((line, idx) => {
+        doc.text(line, margin + 45, y + (idx * 4));
       });
 
-      // Technologies
-      y += 2;
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(52, 152, 219);
-      doc.setFontSize(8);
-      doc.text('Technologies:', margin, y);
-      doc.setFont('helvetica', 'normal');
-      doc.setTextColor(60, 60, 60);
-      doc.text(exp.technologies.join('  •  '), margin + 30, y);
-      y += 6;
+      y += (wrapped.length * 4) + 4;
+    });
 
-      // Separator
-      if (index < experiences.length - 1) {
-        doc.setDrawColor(220, 220, 220);
-        doc.setLineWidth(0.3);
-        doc.line(margin, y, pageWidth - margin, y);
-        y += 6;
+    return y + 3;
+  };
+
+  // ===== PROJECT EXPERIENCE =====
+  const addProjects = (y) => {
+    y = addSectionHeader('Project Experience', y);
+
+    const projects = [
+      {
+        title: 'Online Theater Ticketing System',
+        type: 'Full-Stack Web Application',
+        stack: 'React.js  •  TypeScript  •  Node.js  •  Express.js',
+        points: [
+          'Built a complete end-to-end ticketing web application using React.js and TypeScript on the frontend, with Node.js and Express.js handling backend REST APIs.',
+          'Engineered an interactive real-time seat reservation interface, responsive seating map layout, and secure user authentication.',
+          'Designed and optimized database schemas for handling showtime schedules and user bookings.'
+        ]
+      },
+      {
+        title: 'Enterprise Content Management System (CMS)',
+        type: 'Full-Stack Enterprise Solution',
+        stack: 'React.js  •  Node.js  •  Express.js  •  JWT  •  RBAC',
+        points: [
+          'Engineered a scalable, high-performance administrative content management platform utilizing React.js for a dynamic user interface and Node.js/Express.js for RESTful API services.',
+          'Implemented secure JSON Web Token (JWT) authentication, granular Role-Based Access Control (RBAC), and full CRUD workflows to ensure strict data security and administrative integrity.',
+          'Designed modular API routes and integrated cloud/database persistence to streamline digital asset management, content publishing, and audit logging.'
+        ]
       }
-    });
-
-    return y + 5;
-  };
-
-  // ===== EDUCATION =====
-  const addEducation = (y) => {
-    y = addSectionHeader('EDUCATION', y);
-
-    doc.setTextColor(60, 60, 60);
-    doc.setFontSize(9);
-
-    // Degree - bold
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(25, 42, 86);
-    doc.setFontSize(10);
-    doc.text('B.Sc. in Software Engineering', margin, y);
-
-    // Period - bold and blue
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(52, 152, 219);
-    doc.setFontSize(9);
-    doc.text('2014 - 2018 E.C', pageWidth - margin - 35, y);
-    y += 5;
-
-    // University
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(60, 60, 60);
-    doc.text('Mizan Tepi University', margin, y);
-    y += 5;
-
-    // ===== DECORATED ACHIEVEMENTS =====
-    // Draw decorative box around achievements
-    const achievementsY = y;
-    const achievementsHeight = 30;
-
-    // Box background with subtle color
-    doc.setFillColor(245, 248, 255);
-    doc.setDrawColor(52, 152, 219, 0.3);
-    doc.roundedRect(margin, achievementsY, pageWidth - (2 * margin), achievementsHeight, 3, 3, 'FD');
-
-    // Decorative left border
-    doc.setFillColor(52, 152, 219);
-    doc.rect(margin, achievementsY, 3, achievementsHeight, 'F');
-
-    // Star decoration
-    doc.setFontSize(10);
-    doc.setTextColor(52, 152, 219);
-    doc.text('✦', margin + 10, achievementsY + 6);
-
-    doc.setTextColor(52, 152, 219);
-    doc.text('✦', margin + 10, achievementsY + 14);
-
-    doc.text('✦', margin + 10, achievementsY + 22);
-
-    // Achievements with bold CGPA
-    doc.setFontSize(8.5);
-
-    // Achievement 1: CGPA - BOLD
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(25, 42, 86);
-    doc.text('CGPA: 3.74/4.0', margin + 18, achievementsY + 6);
-
-    // Achievement 2: First Class Honors - normal
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(60, 60, 60);
-    doc.text('First Class Honors', margin + 18, achievementsY + 14);
-
-    // Achievement 3: Dean's List - normal
-    doc.text("Dean's List for Academic Excellence (2014-2018 E.C)", margin + 18, achievementsY + 22);
-
-    y = achievementsY + achievementsHeight + 5;
-
-    // Relevant Coursework
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(25, 42, 86);
-    doc.setFontSize(8.5);
-    doc.text('Relevant Coursework:', margin, y);
-    y += 4;
-
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(60, 60, 60);
-    const coursework = 'Data Structures & Algorithms, Database Management Systems, Web Application Development, Software Architecture, Object-Oriented Programming';
-    const wrappedCoursework = doc.splitTextToSize(coursework, pageWidth - (2 * margin) - 4);
-    wrappedCoursework.forEach(line => {
-      doc.text(line, margin + 2, y);
-      y += 4;
-    });
-
-    return y + 8;
-  };
-
-  // ===== PLATFORM EXPERTISE =====
-  const addPlatformStats = (y) => {
-    y = addSectionHeader('PLATFORM EXPERTISE', y);
-
-    const platformData = [
-      { name: 'Mobile', tech: 'React Native, Flutter' },
-      { name: 'Desktop', tech: 'Electron, .NET MAUI' },
-      { name: 'Web', tech: 'React, Node.js, Next.js' }
     ];
 
-    const platformWidth = (pageWidth - (2 * margin) - 8) / 3;
-
-    platformData.forEach((platform, index) => {
-      if (y > pageHeight - 40) {
+    projects.forEach((project, index) => {
+      if (y > pageHeight - 55) {
         doc.addPage();
         y = margin;
-        y = addSectionHeader('PLATFORM EXPERTISE (cont.)', y);
+        y = addSectionHeader('Project Experience (continued)', y);
       }
 
-      const xPos = margin + index * (platformWidth + 4);
+      // Project title bar
+      doc.setFillColor(...C.bg);
+      doc.roundedRect(margin, y - 2, pageWidth - (2 * margin), 6, 1.5, 1.5, 'F');
+      doc.setFillColor(...C.blue);
+      doc.rect(margin, y - 2, 2.5, 6, 'F');
 
-      // Card with subtle border
-      doc.setDrawColor(200, 210, 220);
-      doc.setFillColor(248, 250, 252);
-      doc.roundedRect(xPos, y, platformWidth, 22, 2, 2, 'FD');
-
-      // Platform name
+      // Title
+      doc.setTextColor(...C.navy);
+      doc.setFontSize(9.8);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(9);
-      doc.setTextColor(52, 152, 219);
-      doc.text(platform.name, xPos + 6, y + 6);
+      doc.text(project.title, margin + 6, y + 2);
 
-      // Tech
+      // Type badge
+      doc.setFillColor(...C.blueLight);
+      doc.roundedRect(pageWidth - margin - 48, y - 1, 46, 4.5, 1, 1, 'F');
+      doc.setTextColor(...C.blue);
+      doc.setFontSize(6.3);
+      doc.setFont('helvetica', 'bold');
+      doc.text(project.type, pageWidth - margin - 46, y + 1.7);
+
+      y += 7;
+
+      // Stack
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(7.5);
+      doc.setTextColor(...C.blue);
+      doc.text('Stack:', margin + 6, y);
       doc.setFont('helvetica', 'normal');
-      doc.setTextColor(60, 60, 60);
-      doc.setFontSize(7);
-      doc.text(platform.tech, xPos + 6, y + 15);
+      doc.setTextColor(...C.gray);
+      doc.text(project.stack, margin + 17, y);
+      y += 5;
+
+      // Bullet points
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.2);
+      doc.setTextColor(...C.text);
+
+      project.points.forEach(point => {
+        const wrapped = doc.splitTextToSize('•  ' + point, pageWidth - (2 * margin) - 8);
+        wrapped.forEach((line, lineIdx) => {
+          doc.text(line, margin + (lineIdx === 0 ? 6 : 11), y);
+          y += 4;
+        });
+        y += 1;
+      });
+
+      // Separator
+      if (index < projects.length - 1) {
+        doc.setDrawColor(...C.border);
+        doc.setLineWidth(0.25);
+        doc.line(margin + 6, y + 1, pageWidth - margin - 6, y + 1);
+        y += 5;
+      } else {
+        y += 3;
+      }
+    });
+
+    return y + 3;
+  };
+
+  // ===== KEY STRENGTHS =====
+  const addStrengths = (y) => {
+    y = addSectionHeader('Key Strengths & Competencies', y);
+
+    const strengths = [
+      {
+        title: 'Logical Problem Solving',
+        desc: 'Exceptional analytical thinking, system architecture design, and algorithmic debugging skills.',
+        color: C.blue
+      },
+      {
+        title: 'Clean Code & Architecture',
+        desc: 'Strong commitment to modular, scalable, and readable code standards.',
+        color: C.green
+      },
+      {
+        title: 'Continuous Learning',
+        desc: 'Actively expanding technical skills into mobile development, cloud systems, and modern databases.',
+        color: C.purple
+      },
+      {
+        title: 'Technical Communication',
+        desc: 'Fluent in technical Amharic, English writing and verbal presentations.',
+        color: C.orange
+      }
+    ];
+
+    const cardWidth = (pageWidth - (2 * margin) - 6) / 2;
+
+    strengths.forEach((strength, index) => {
+      if (y > pageHeight - 30) {
+        doc.addPage();
+        y = margin;
+        y = addSectionHeader('Key Strengths (continued)', y);
+      }
+
+      const col = index % 2;
+      const xPos = margin + col * (cardWidth + 6);
+      const rowY = y + Math.floor(index / 2) * 17;
+
+      // Card
+      doc.setFillColor(...C.bg);
+      doc.roundedRect(xPos, rowY - 2, cardWidth, 15, 2, 2, 'F');
+
+      // Left accent
+      doc.setFillColor(...strength.color);
+      doc.rect(xPos, rowY - 2, 2.5, 15, 'F');
+
+      // Title
+      doc.setTextColor(...C.navy);
+      doc.setFontSize(8.6);
+      doc.setFont('helvetica', 'bold');
+      doc.text(strength.title, xPos + 6, rowY + 3);
+
+      // Description
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7.4);
+      doc.setTextColor(...C.text);
+      const wrapped = doc.splitTextToSize(strength.desc, cardWidth - 10);
+      wrapped.forEach((line, lineIdx) => {
+        doc.text(line, xPos + 6, rowY + 8 + (lineIdx * 3.3));
+      });
+    });
+
+    const rowCount = Math.ceil(strengths.length / 2);
+    return y + (rowCount * 17) + 4;
+  };
+
+  // ===== ADDITIONAL INFORMATION =====
+  const addExtras = (y) => {
+    if (y > pageHeight - 40) {
+      doc.addPage();
+      y = margin;
+    }
+
+    y = addSectionHeader('Additional Information', y);
+
+    const items = [
+      { label: 'Languages', value: 'English, Amharic' },
+      { label: 'Hobbies', value: 'Coding, New Technology Search, Video Editing, Reading Tech Blogs' },
+      { label: 'Availability', value: 'Open to freelance, full-time, and collaborative opportunities worldwide' }
+    ];
+
+    items.forEach(item => {
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(...C.navy);
+      doc.setFontSize(8.5);
+      doc.text(item.label + ':', margin + 2, y);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(...C.text);
+      doc.text(item.value, margin + 28, y);
+      y += 5;
+    });
+
+    return y + 3;
+  };
+
+  // ===== THANK YOU SECTION =====
+  const addThankYou = (y) => {
+    if (y > pageHeight - 35) {
+      doc.addPage();
+      y = margin;
+    }
+
+    // Decorative box
+    doc.setFillColor(...C.blueLight);
+    doc.roundedRect(margin, y, pageWidth - (2 * margin), 22, 3, 3, 'F');
+    doc.setDrawColor(...C.blue);
+    doc.setLineWidth(0.5);
+    doc.roundedRect(margin, y, pageWidth - (2 * margin), 22, 3, 3, 'S');
+
+    // Decorative stars
+    doc.setFontSize(9);
+    doc.setTextColor(...C.blue);
+    doc.text('✦', margin + 5, y + 7);
+    doc.text('✦', pageWidth - margin - 8, y + 7);
+
+    // Thank you title
+    doc.setTextColor(...C.navy);
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text('THANK YOU', pageWidth / 2, y + 8, { align: 'center' });
+
+    // Message
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.2);
+    doc.setTextColor(...C.text);
+    const message = 'Thank you for reviewing my qualifications. I am eager to apply my skills and dedication to a challenging role and contribute to an innovative team.';
+    const wrapped = doc.splitTextToSize(message, pageWidth - (2 * margin) - 15);
+    wrapped.forEach((line, idx) => {
+      doc.text(line, pageWidth / 2, y + 13 + (idx * 3.5), { align: 'center' });
     });
 
     return y + 28;
   };
 
-  // ===== ADDITIONAL INFORMATION =====
-  const addExtras = (y) => {
-    y = addSectionHeader('ADDITIONAL INFORMATION', y);
-
-    doc.setTextColor(60, 60, 60);
-    doc.setFontSize(8.5);
-
-    // Languages
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(25, 42, 86);
-    doc.text('Languages:', margin, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(60, 60, 60);
-    doc.text('English, Amharic', margin + 30, y);
-    y += 5.5;
-
-    // Hobbies
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(25, 42, 86);
-    doc.text('Hobbies:', margin, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(60, 60, 60);
-    doc.text('Coding, New Technology Search, Video Editing, Reading Tech Blogs', margin + 28, y);
-    y += 5.5;
-
-    // GitHub
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(25, 42, 86);
-    doc.text('GitHub:', margin, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(52, 152, 219);
-    doc.textWithLink('github.com/Gebreslassie8', margin + 28, y, { url: 'https://github.com/Gebreslassie8' });
-
-    return y + 10;
-  };
-
   // ===== FOOTER =====
   const addFooter = () => {
-    doc.setFontSize(7);
-    doc.setTextColor(150, 150, 150);
-    doc.text('Resume - Gebreslassie Dessie', margin, pageHeight - 10);
-    doc.text('Updated: ' + new Date().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }), pageWidth - margin - 45, pageHeight - 10);
-
     const pageCount = doc.internal.getNumberOfPages();
     for (let i = 1; i <= pageCount; i++) {
       doc.setPage(i);
-      doc.setTextColor(150, 150, 150);
-      doc.text('Page ' + i + ' of ' + pageCount, pageWidth / 2, pageHeight - 10, { align: 'center' });
+
+      // Footer accent line
+      doc.setDrawColor(...C.blue);
+      doc.setLineWidth(0.4);
+      doc.line(margin, pageHeight - 12, pageWidth - margin, pageHeight - 12);
+
+      doc.setFontSize(7);
+      doc.setTextColor(...C.grayLight);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Gebreslassie Dessie Agdew  |  Full Stack Software Engineer', margin, pageHeight - 8);
+      doc.text('Page ' + i + ' of ' + pageCount, pageWidth - margin, pageHeight - 8, { align: 'right' });
     }
   };
 
   // ===== GENERATE PDF =====
   try {
     addHeader();
-    yPosition = 55;
+    yPosition = 85;
 
     yPosition = addSummary(yPosition);
-    yPosition = addSkills(yPosition);
 
-    if (yPosition > pageHeight - 80) {
-      doc.addPage();
-      yPosition = margin;
-    }
-
-    yPosition = addExperience(yPosition);
-
-    if (yPosition > pageHeight - 80) {
+    if (yPosition > pageHeight - 60) {
       doc.addPage();
       yPosition = margin;
     }
@@ -420,17 +538,38 @@ export const generateResumePDF = async (portfolioData) => {
       yPosition = margin;
     }
 
-    yPosition = addPlatformStats(yPosition);
+    yPosition = addSkills(yPosition);
 
     if (yPosition > pageHeight - 60) {
       doc.addPage();
       yPosition = margin;
     }
 
-    addExtras(yPosition);
+    yPosition = addProjects(yPosition);
+
+    if (yPosition > pageHeight - 60) {
+      doc.addPage();
+      yPosition = margin;
+    }
+
+    yPosition = addStrengths(yPosition);
+
+    if (yPosition > pageHeight - 45) {
+      doc.addPage();
+      yPosition = margin;
+    }
+
+    yPosition = addExtras(yPosition);
+
+    if (yPosition > pageHeight - 40) {
+      doc.addPage();
+      yPosition = margin;
+    }
+
+    addThankYou(yPosition);
     addFooter();
 
-    const fileName = 'Gebreslassie_Dessie_Resume.pdf';
+    const fileName = 'Gebreslassie_Dessie_CV.pdf';
     doc.save(fileName);
 
   } catch (error) {
@@ -443,25 +582,28 @@ export const generateResumePDF = async (portfolioData) => {
 export const generateSimpleResumePDF = (portfolioData) => {
   const doc = new jsPDF();
   const margin = 20;
+  const pageWidth = doc.internal.pageSize.getWidth();
   let y = margin;
 
   // Header
-  doc.setTextColor(25, 42, 86);
-  doc.setFontSize(22);
-  doc.setFont('helvetica', 'bold');
-  doc.text('GEBRESLASSIE DESSIE', doc.internal.pageSize.getWidth() / 2, y, { align: 'center' });
-  y += 8;
+  doc.setFillColor(25, 42, 86);
+  doc.rect(0, 0, pageWidth, 45, 'F');
 
-  doc.setFontSize(12);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(20);
+  doc.setFont('helvetica', 'bold');
+  doc.text('GEBRESLASSIE DESSIE AGDEW', margin, 20);
+
+  doc.setFontSize(11);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(52, 152, 219);
-  doc.text('Full-Stack Developer', doc.internal.pageSize.getWidth() / 2, y, { align: 'center' });
-  y += 6;
+  doc.text('Full Stack Software Engineer', margin, 28);
 
+  doc.setTextColor(255, 255, 255);
   doc.setFontSize(8);
-  doc.setTextColor(80, 80, 80);
-  doc.text('gebreslassiedessie@gmail.com  |  +251906995513  |  Addis Ababa, Ethiopia', doc.internal.pageSize.getWidth() / 2, y, { align: 'center' });
-  y += 12;
+  doc.text('gebreslassiedessie@gmail.com  |  +251 902 067 211  |  Addis Ababa, Ethiopia', margin, 38);
+
+  y = 55;
 
   // Summary
   doc.setTextColor(25, 42, 86);
@@ -472,14 +614,31 @@ export const generateSimpleResumePDF = (portfolioData) => {
 
   doc.setTextColor(60, 60, 60);
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(10);
-  const summary = 'Results-oriented Full-Stack Developer with hands-on experience building scalable web applications at ICT Park. Proficient in React.js, Tailwind CSS, Node.js, MySQL, and Supabase.';
+  doc.setFontSize(9);
+  const summary = 'High-achieving Full Stack Software Engineer with 3.74/4.00 CGPA from Mizan-Tepi University. Specialized in full-stack web development with expertise in React.js, Next.js, Node.js, Express.js, TypeScript, and Tailwind CSS.';
   const wrappedSummary = doc.splitTextToSize(summary, pageWidth - (2 * margin));
   wrappedSummary.forEach(line => {
     doc.text(line, margin, y);
-    y += 5;
+    y += 4.5;
   });
 
+  y += 6;
+
+  // Education
+  doc.setTextColor(25, 42, 86);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Education', margin, y);
+  y += 6;
+
+  doc.setTextColor(60, 60, 60);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.text('B.Sc. in Software Engineering - Mizan-Tepi University', margin, y);
+  y += 4.5;
+  doc.setTextColor(39, 174, 96);
+  doc.setFont('helvetica', 'bold');
+  doc.text('• CGPA: 3.74/4.00 (Graduated with Distinction)', margin, y);
   y += 8;
 
   // Platform Stats
@@ -490,13 +649,13 @@ export const generateSimpleResumePDF = (portfolioData) => {
   y += 6;
 
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(10);
+  doc.setFontSize(9);
   doc.setTextColor(60, 60, 60);
   doc.text('Mobile: React Native, Flutter', margin, y);
-  y += 6;
+  y += 5;
   doc.text('Desktop: Electron, .NET MAUI', margin, y);
-  y += 6;
-  doc.text('Web: React, Node.js, Next.js', margin, y);
+  y += 5;
+  doc.text('Web: React, Next.js, Node.js', margin, y);
 
-  doc.save('Gebreslassie_Dessie_Resume_Quick.pdf');
+  doc.save('Gebreslassie_Dessie.pdf');
 };

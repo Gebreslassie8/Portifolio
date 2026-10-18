@@ -10,51 +10,42 @@ const ProjectCard = ({ project, index }) => {
   const getPlatformBadge = (platform) => {
     const badges = {
       mobile: {
-        color: 'from-purple-500 to-pink-500',
         bgColor: 'bg-gradient-to-r from-purple-500 to-pink-500',
         icon: '📱',
-        gradient: 'hover:from-purple-600 hover:to-pink-600'
       },
       desktop: {
-        color: 'from-blue-500 to-cyan-500',
         bgColor: 'bg-gradient-to-r from-blue-500 to-cyan-500',
         icon: '💻',
-        gradient: 'hover:from-blue-600 hover:to-cyan-600'
       },
       web: {
-        color: 'from-green-500 to-emerald-500',
         bgColor: 'bg-gradient-to-r from-green-500 to-emerald-500',
         icon: '🌐',
-        gradient: 'hover:from-green-600 hover:to-emerald-600'
       }
     }
     return badges[platform] || badges.web
   }
 
   const platformBadge = getPlatformBadge(project.platform)
+  const isLive = Boolean(project.liveUrl)
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.1,
-        type: "spring",
-        stiffness: 100
-      }}
-      viewport={{ once: true, margin: "-50px" }}
-      className="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm"
+      transition={{ duration: 0.5, delay: index * 0.1, type: 'spring', stiffness: 100 }}
+      viewport={{ once: true, margin: '-50px' }}
+      className="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm flex flex-col"
     >
-      {/* Image Container with Overlay */}
+      {/* Image Container */}
       <div className="relative overflow-hidden">
         <div className="relative h-56 overflow-hidden">
           <motion.img
             src={project.image}
             alt={project.title}
-            className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
+            className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
             onLoad={() => setImageLoaded(true)}
           />
           {!imageLoaded && (
@@ -63,6 +54,7 @@ const ProjectCard = ({ project, index }) => {
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
+          {/* Platform badge */}
           <div className="absolute top-4 right-4">
             <span className={`${platformBadge.bgColor} text-white px-3 py-2 rounded-full text-sm font-semibold shadow-lg flex items-center space-x-1 backdrop-blur-sm`}>
               <span className="text-base">{platformBadge.icon}</span>
@@ -70,6 +62,15 @@ const ProjectCard = ({ project, index }) => {
             </span>
           </div>
 
+          {/* 🟢 LIVE indicator badge */}
+          {isLive && (
+            <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-red-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg animate-pulse">
+              <span className="w-2 h-2 bg-white rounded-full"></span>
+              LIVE
+            </div>
+          )}
+
+          {/* Hover action buttons */}
           <div className="absolute bottom-4 left-4 right-4 flex gap-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
             {project.githubUrl && (
               <motion.a
@@ -83,23 +84,24 @@ const ProjectCard = ({ project, index }) => {
                 {t('projects.code')}
               </motion.a>
             )}
-            {project.liveUrl && (
+            {isLive && (
               <motion.a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 px-3 rounded-lg text-sm font-semibold text-center shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all"
+                className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-2 px-3 rounded-lg text-sm font-semibold text-center shadow-lg hover:from-green-600 hover:to-emerald-700 transition-all flex items-center justify-center gap-1"
               >
-                {t('projects.liveDemo')}
+                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                Live Demo
               </motion.a>
             )}
           </div>
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-1">
         <div className="mb-4">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
             {project.title}
@@ -133,38 +135,39 @@ const ProjectCard = ({ project, index }) => {
           )}
         </div>
 
-        <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-          {project.downloadUrl && (
+        {/* Bottom bar */}
+        <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700 mt-auto">
+          {project.githubUrl && (
             <a
-              href={project.downloadUrl}
+              href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 text-sm font-medium"
             >
-              <span className="mr-1.5">⬇️</span>
-              {t('projects.download')}
+              <span className="mr-1.5">🔗</span>
+              Source Code
             </a>
           )}
-          {project.appStore && (
+          {isLive && (
             <a
-              href={project.appStore}
+              href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 text-sm font-medium"
+              className="flex items-center text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300 text-sm font-semibold"
             >
-              <span className="mr-1.5">🍎</span>
-              App Store
+              <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+              Live Site
             </a>
           )}
-          {project.playStore && (
+          {project.backendUrl && (
             <a
-              href={project.playStore}
+              href={project.backendUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 text-sm font-medium"
+              className="flex items-center text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors duration-300 text-sm font-medium"
             >
-              <span className="mr-1.5">🤖</span>
-              Play Store
+              <span className="mr-1.5">⚙️</span>
+              API
             </a>
           )}
         </div>
@@ -178,16 +181,14 @@ const Projects = () => {
   const { projects } = portfolioData
   const [filter, setFilter] = useState('all')
 
+  // ✅ Only "All" and "Web" filters — all projects are web, no empty categories
   const filterOptions = [
-    { key: 'all', label: t('projects.all'), count: projects.length },
-    { key: 'mobile', label: t('projects.mobile'), count: projects.filter(p => p.platform === 'mobile').length },
-    { key: 'desktop', label: t('projects.desktop'), count: projects.filter(p => p.platform === 'desktop').length },
-    { key: 'web', label: t('projects.web'), count: projects.filter(p => p.platform === 'web').length }
+    { key: 'all', label: t('projects.all') || 'All Projects', count: projects.length },
+    { key: 'web', label: t('projects.web') || 'Web', count: projects.filter(p => p.platform === 'web').length }
   ]
 
-  const filteredProjects = filter === 'all'
-    ? projects
-    : projects.filter(project => project.platform === filter)
+  const filteredProjects =
+    filter === 'all' ? projects : projects.filter(project => project.platform === filter)
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
@@ -217,6 +218,7 @@ const Projects = () => {
             </motion.p>
           </div>
 
+          {/* Filter buttons — only All + Web */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -229,16 +231,20 @@ const Projects = () => {
                 onClick={() => setFilter(option.key)}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center space-x-3 shadow-lg ${filter === option.key
-                  ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-primary/25'
-                  : 'bg-white/80 dark:bg-gray-800/80 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50'
-                  }`}
+                className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center space-x-3 shadow-lg ${
+                  filter === option.key
+                    ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-primary/25'
+                    : 'bg-white/80 dark:bg-gray-800/80 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50'
+                }`}
               >
                 <span>{option.label}</span>
-                <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${filter === option.key
-                  ? 'bg-white/20 text-white'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
-                  }`}>
+                <span
+                  className={`px-2.5 py-1 rounded-full text-xs font-bold ${
+                    filter === option.key
+                      ? 'bg-white/20 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                  }`}
+                >
                   {option.count}
                 </span>
               </motion.button>
@@ -255,11 +261,7 @@ const Projects = () => {
               className="grid md:grid-cols-2 xl:grid-cols-3 gap-8"
             >
               {filteredProjects.map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  index={index}
-                />
+                <ProjectCard key={project.id} project={project} index={index} />
               ))}
             </motion.div>
           </AnimatePresence>
@@ -274,9 +276,7 @@ const Projects = () => {
               <h3 className="text-2xl font-bold text-gray-600 dark:text-gray-400 mb-2">
                 No projects found
               </h3>
-              <p className="text-gray-500 dark:text-gray-500">
-                Try selecting a different filter
-              </p>
+              <p className="text-gray-500 dark:text-gray-500">Try selecting a different filter</p>
             </motion.div>
           )}
         </motion.div>

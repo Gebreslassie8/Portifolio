@@ -7,10 +7,10 @@ const Experience = () => {
   const { t } = useTranslation()
   const { experience } = portfolioData
 
+  // Only Web + Full-stack platforms (desktop removed)
   const getPlatformIcon = (platform) => {
     const icons = {
       mobile: '📱',
-      desktop: '💻',
       web: '🌐',
       fullstack: '⚡',
       cloud: '☁️',
@@ -19,7 +19,6 @@ const Experience = () => {
     return icons[platform] || '💼'
   }
 
-  // Card variants for staggered animation
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: (index) => ({
@@ -33,7 +32,6 @@ const Experience = () => {
     })
   }
 
-  // Hover glow effect variants
   const glowVariants = {
     initial: { opacity: 0, scale: 0.8 },
     hover: {
@@ -44,8 +42,11 @@ const Experience = () => {
   }
 
   return (
-    <section id="experience" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-      {/* Animated background elements */}
+    <section
+      id="experience"
+      className="section-padding bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden"
+    >
+      {/* Background accents */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl"></div>
@@ -58,7 +59,7 @@ const Experience = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* Header Section */}
+          {/* Header */}
           <div className="text-center mb-16">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -85,7 +86,8 @@ const Experience = () => {
             ></motion.div>
 
             <p className="text-gray-600 dark:text-gray-300 text-lg max-w-3xl mx-auto mt-6">
-              {t('experience.description')}
+              {t('experience.description') ||
+                'Real-world experience building production-grade applications — from enterprise CMS platforms to full-stack ticketing systems.'}
             </p>
           </div>
 
@@ -98,11 +100,11 @@ const Experience = () => {
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, margin: '-50px' }}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 className="group relative"
               >
-                {/* Glow effect on hover */}
+                {/* Glow */}
                 <motion.div
                   variants={glowVariants}
                   initial="initial"
@@ -110,13 +112,13 @@ const Experience = () => {
                   className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-accent/30 rounded-3xl blur-xl"
                 ></motion.div>
 
-                {/* Main Card */}
+                {/* Card */}
                 <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
-                  {/* Gradient top bar */}
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-gradient"></div>
+                  {/* Animated top bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-gradient rounded-t-2xl"></div>
 
                   <div className="p-6 md:p-8">
-                    {/* Header with timeline indicator */}
+                    {/* Header row */}
                     <div className="flex flex-wrap justify-between items-start gap-4 mb-5">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
@@ -142,16 +144,16 @@ const Experience = () => {
                         </div>
                       </div>
 
-                      {/* Duration Badge */}
-                      {exp.duration && (
-                        <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-4 py-2 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
-                          <FaCalendarAlt className="text-primary" size={14} />
-                          <span>{exp.duration}</span>
+                      {/* ✅ Period badge uses exp.period (not exp.duration) */}
+                      {exp.period && (
+                        <div className="flex items-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 px-4 py-2 rounded-full text-sm font-semibold text-primary dark:text-accent whitespace-nowrap">
+                          <FaCalendarAlt size={14} />
+                          <span>{exp.period}</span>
                         </div>
                       )}
                     </div>
 
-                    {/* Platforms Tags */}
+                    {/* Platforms */}
                     {exp.platforms && exp.platforms.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-5">
                         {exp.platforms.map(platform => (
@@ -170,14 +172,14 @@ const Experience = () => {
                     {/* Description */}
                     <motion.p
                       className="text-gray-600 dark:text-gray-300 leading-relaxed mb-5"
-                      initial={{ opacity: 0.8 }}
+                      initial={{ opacity: 0.9 }}
                       whileHover={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     >
                       {exp.description}
                     </motion.p>
 
-                    {/* Technologies */}
+                    {/* Tech stack */}
                     {exp.technologies && exp.technologies.length > 0 && (
                       <div className="pt-4 border-t border-gray-100 dark:border-gray-700/50">
                         <div className="flex flex-wrap items-center gap-2">
@@ -202,7 +204,7 @@ const Experience = () => {
                       </div>
                     )}
 
-                    {/* Animated arrow indicator on hover */}
+                    {/* Decorative arrow */}
                     <motion.div
                       initial={{ opacity: 0, x: -10 }}
                       whileHover={{ opacity: 1, x: 0 }}
@@ -217,7 +219,7 @@ const Experience = () => {
             ))}
           </div>
 
-          {/* Bottom CTA Section */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -232,13 +234,12 @@ const Experience = () => {
               className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <span>Let's Work Together</span>
-              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              <FaArrowRight />
             </motion.a>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Add gradient animation keyframes to your CSS */}
       <style jsx>{`
         @keyframes gradient {
           0% { background-position: 0% 50%; }
