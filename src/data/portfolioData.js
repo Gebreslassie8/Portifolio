@@ -125,7 +125,7 @@ export const portfolioData = {
     role: "Full-Stack Developer"
   },
   {
-    id: "project4",
+    id: "project3",
     title: "E-Commerce Platform",
     description: "Full-stack e-commerce solution with secure payments, cart & checkout flow, inventory management, and admin panel. Frontend on Vercel, backend API on Render.",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop",
@@ -138,8 +138,53 @@ export const portfolioData = {
     status: "Live",
     category: "E-Commerce",
     role: "Full-Stack Developer"
+  },
+
+  {
+    id: "project4",
+    title: "Task Manager — Python Flask",
+    description: "A Python-powered task management web application built with Flask and SQLite. Features CRUD operations, task filtering, priority levels, and persistent storage. Deployed live on Render.",
+    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=250&fit=crop",
+    technologies: ["Python", "Flask", "SQLite", "Jinja2", "HTML/CSS"],
+    platform: "web",
+    githubUrl: "https://github.com/Gebreslassie8/To-Do-Listpython-project",
+    liveUrl: "https://todo-list-python-7req.onrender.com",
+    featured: true,
+    status: "Live",
+    category: "Productivity",
+    role: "Python Developer"
+  },
+  {
+    id: "project5",
+    title: "Game Spinner — Interactive Wheel",
+    description: "A fun and interactive spinning wheel game with smooth animations, randomized selection, and instant results. Perfect for giveaways, random pickers, and decision-making. Deployed live on Vercel.",
+    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=250&fit=crop",
+    technologies: ["React", "CSS Animations", "Vite", "JavaScript"],
+    platform: "web",
+    githubUrl: "https://github.com/Gebreslassie8/game-spinner",
+    liveUrl: "https://game-spinner-wheat.vercel.app/",
+    featured: true,
+    status: "Live",
+    category: "Game / Fun",
+    role: "Frontend Developer"
+  },
+  {
+    id: "project6",
+    title: "Smart Calculator",
+    description: "A feature-rich smart calculator web app with a clean, responsive interface. Supports basic arithmetic, scientific functions, calculation history, and full keyboard input — built with React and deployed on Vercel.",
+    image: "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=400&h=250&fit=crop",
+    technologies: ["React", "Vite", "JavaScript", "CSS3"],
+    platform: "web",
+    githubUrl: "https://github.com/Gebreslassie8/smart-calculator",
+    liveUrl: "https://smart-calculater.vercel.app/",
+    featured: true,
+    status: "Live",
+    category: "Utility / Productivity",
+    role: "Frontend Developer"
   }
+
 ],
+
 
   experience: [
   {
