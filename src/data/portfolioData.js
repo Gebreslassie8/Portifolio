@@ -102,7 +102,7 @@ export const portfolioData = {
     technologies: ["React", "Tailwind CSS", "Node.js", "Express", "PostgreSQL", "JWT"],
     platform: "web",
     githubUrl: "https://github.com/Gebreslassie8/Ethiopian-IT-park-Frontend",
-    liveUrl: "https://ethiopian-it-park.vercel.app",        // ← update to your actual Vercel deployment
+    liveUrl: "https://ethiopian-it-park-frontend.vercel.app/",        // ← update to your actual Vercel deployment
     backendUrl: "https://ethiopian-it-park-api.onrender.com", // ← update to your Render backend URL
     featured: true,
     status: "Live",
