@@ -148,7 +148,7 @@ export const portfolioData = {
     technologies: ["Python", "Flask", "SQLite", "Jinja2", "HTML/CSS"],
     platform: "web",
     githubUrl: "https://github.com/Gebreslassie8/To-Do-Listpython-project",
-    liveUrl: "https://todo-list-python-7req.onrender.com",
+    liveUrl: "https://todo-list-python-7req.onrender.com/",
     featured: true,
     status: "Live",
     category: "Productivity",
