@@ -98,7 +98,7 @@ export const portfolioData = {
     id: "project1",
     title: "Ethiopian IT Park Enterprise Content Management System",
     description: "A full-stack enterprise CMS built for the Ethiopian IT Park — featuring role-based access control, content publishing workflows, digital asset management, and a responsive admin dashboard. Frontend deployed on Vercel, backend API on Render.",
-    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=250&fit=crop",
+    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=250&fit=crop&q=80",
     technologies: ["React", "Tailwind CSS", "Node.js", "Express", "PostgreSQL", "JWT"],
     platform: "web",
     githubUrl: "https://github.com/Gebreslassie8/Ethiopian-IT-park-Frontend",
