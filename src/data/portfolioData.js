@@ -117,7 +117,7 @@ export const portfolioData = {
     technologies: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Payment Gateway"],
     platform: "web",
     githubUrl: "https://github.com/Gebreslassie8/Theaterwebfrontend",
-    liveUrl: "https://theater-ticketing.vercel.app",         // ← update to your actual Vercel deployment
+    liveUrl: "https://theaterhubsystem.vercel.app/",         // ← update to your actual Vercel deployment
     backendUrl: "https://theater-api.onrender.com",         // ← update to your Render backend URL
     featured: true,
     status: "Live",
