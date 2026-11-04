@@ -132,7 +132,7 @@ export const portfolioData = {
     technologies: ["TypeScript", "React", "Node.js", "MongoDB", "Payment Gateway", "JWT"],
     platform: "web",
     githubUrl: "https://github.com/Gebreslassie8/E-commerce",
-    liveUrl: "https://ecommerce-platform.vercel.app",        // ← update to your actual Vercel deployment
+    liveUrl: "https://e-commerce-d8pt.vercel.app/",        // ← update to your actual Vercel deployment
     backendUrl: "https://ecommerce-api.onrender.com",       // ← update to your Render backend URL
     featured: true,
     status: "Live",
