@@ -91,7 +91,8 @@ export const generateResumePDF = async (portfolioData) => {
     doc.text('Portfolio:', 120, 47.5);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(...C.blue);
-    doc.textWithLink('portfolio-igqe.vercel.app', 137, 47.5, { url: 'https://portfolio-igqe.vercel.app' });
+    // ✅ FIXED PORTFOLIO LINK HERE
+    doc.textWithLink('portifolio-1gqe.vercel.app', 137, 47.5, { url: 'https://portifolio-1gqe.vercel.app/' });
 
     // ===== ICT SOLUTIONS BADGE =====
     doc.setFillColor(...C.blue);
@@ -141,7 +142,7 @@ export const generateResumePDF = async (portfolioData) => {
     return y + 5;
   };
 
-  // ===== EDUCATION & CREDENTIALS (with short coursework) =====
+  // ===== EDUCATION & CREDENTIALS =====
   const addEducation = (y) => {
     y = addSectionHeader('Education & Credentials', y);
 
@@ -185,7 +186,7 @@ export const generateResumePDF = async (portfolioData) => {
     doc.setTextColor(...C.gray);
     doc.text('(Graduated with Distinction)', margin + 42, y + 17);
 
-    // ---- SHORT COURSEWORK (only main ones) ----
+    // ---- SHORT COURSEWORK ----
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(...C.navy);
     doc.setFontSize(7.8);
@@ -193,7 +194,6 @@ export const generateResumePDF = async (portfolioData) => {
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(...C.text);
     doc.setFontSize(7.5);
-    // Select only the core/main courses (4-5)
     const mainCourses = 'Operating Systems, Web Security, Mobile Application Development, Data Structures & Algorithms';
     doc.text(mainCourses, margin + 42, y + 23);
 
@@ -274,25 +274,36 @@ export const generateResumePDF = async (portfolioData) => {
   const addProjects = (y) => {
     y = addSectionHeader('Project Experience', y);
 
+    // ✅ ADDED LIVE URLS HERE
     const projects = [
       {
-        title: 'Online Theater Ticketing System',
+        title: 'Girum Electronics E-Commerce System',
         type: 'Full-Stack Web Application',
-        stack: 'React.js  •  TypeScript  •  Node.js  •  Express.js',
+        stack: 'Next.js  •  React.js  •  MongoDB  •  Node.js',
+        live: 'https://girumelectronics.vercel.app/',
         points: [
-          'Built a complete end-to-end ticketing web application using React.js and TypeScript on the frontend, with Node.js and Express.js handling backend REST APIs.',
-          'Engineered an interactive real-time seat reservation interface, responsive seating map layout, and secure user authentication.',
-          'Designed and optimized database schemas for handling showtime schedules and user bookings.'
+          'Architected a complete e-commerce and management platform for a manufacturing enterprise, featuring product showcase, branch management, and JWT authentication.',
+          'Engineered a comprehensive admin dashboard for order management, payment tracking, and real-time inventory control.'
         ]
       },
       {
         title: 'Enterprise Content Management System (CMS)',
         type: 'Full-Stack Enterprise Solution',
         stack: 'React.js  •  Node.js  •  Express.js  •  JWT  •  RBAC',
+        live: 'https://ethiopian-it-park-frontend.vercel.app/',
         points: [
           'Engineered a scalable, high-performance administrative content management platform utilizing React.js for a dynamic user interface and Node.js/Express.js for RESTful API services.',
-          'Implemented secure JSON Web Token (JWT) authentication, granular Role-Based Access Control (RBAC), and full CRUD workflows to ensure strict data security and administrative integrity.',
-          'Designed modular API routes and integrated cloud/database persistence to streamline digital asset management, content publishing, and audit logging.'
+          'Implemented secure JSON Web Token (JWT) authentication, granular Role-Based Access Control (RBAC), and full CRUD workflows to ensure strict data security.'
+        ]
+      },
+      {
+        title: 'Online Theater Ticketing System',
+        type: 'Full-Stack Web Application',
+        stack: 'React.js  •  TypeScript  •  Node.js  •  Express.js',
+        live: 'https://theaterhubsystem.vercel.app/',
+        points: [
+          'Built a complete end-to-end ticketing web application using React.js and TypeScript on the frontend, with Node.js and Express.js handling backend REST APIs.',
+          'Engineered an interactive real-time seat reservation interface, responsive seating map layout, and secure user authentication.'
         ]
       }
     ];
@@ -334,7 +345,19 @@ export const generateResumePDF = async (portfolioData) => {
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(...C.gray);
       doc.text(project.stack, margin + 17, y);
-      y += 5;
+      
+      // ✅ RENDER LIVE LINK
+      if (project.live) {
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(...C.navy);
+        doc.text('Live:', margin + 17, y + 4);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(...C.blue);
+        doc.textWithLink(project.live, margin + 26, y + 4, { url: project.live });
+        y += 9; 
+      } else {
+        y += 5;
+      }
 
       // Bullet points
       doc.setFont('helvetica', 'normal');
